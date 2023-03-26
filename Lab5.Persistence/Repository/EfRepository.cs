@@ -18,7 +18,6 @@ namespace Lab5.Persistence.Repository
         public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
         {
             await _entities.AddAsync(entity, cancellationToken);
-            await _dbContext.SaveChangesAsync(cancellationToken);    //save of db done, does we need it?
         }
 
         public async Task DeleteAsync(T entity, CancellationToken cancellationToken = default)
@@ -29,7 +28,6 @@ namespace Lab5.Persistence.Repository
             }
 
             _dbContext.Set<T>().Remove(entity);
-            await _dbContext.SaveChangesAsync(cancellationToken);  //save of db done, does we need it?
         }
 
         public async Task<T> FirstOrDefaultAsync(System.Linq.Expressions.Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
@@ -86,7 +84,6 @@ namespace Lab5.Persistence.Repository
         public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
         {
             _dbContext.Entry(entity).State = EntityState.Modified; 
-            await _dbContext.SaveChangesAsync(cancellationToken);    //save of db done, does we need it?
         }
     }
 }
