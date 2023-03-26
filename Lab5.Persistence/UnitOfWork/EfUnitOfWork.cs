@@ -2,11 +2,6 @@
 using Lab5.Domain.Entities;
 using Lab5.Persistence.Data;
 using Lab5.Persistence.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab5.Persistence.UnitOfWork
 {

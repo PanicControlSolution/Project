@@ -1,12 +1,6 @@
 ﻿using Lab5.Domain.Abstractions;
 using Lab5.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab5.Persistence.Repository
 {
