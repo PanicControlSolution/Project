@@ -5,7 +5,7 @@ using Lab5.Persistence.Repository;
 
 namespace Lab5.Persistence.UnitOfWork
 {
-    internal class EfUnitOfWork : IUnitOfWork
+    internal class FakeUnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _context;
         private readonly Lazy<IRepository<Set>> _setRepository;
@@ -14,12 +14,11 @@ namespace Lab5.Persistence.UnitOfWork
         //implementation of interface
         IRepository<Set> IUnitOfWork._setRepository => _setRepository.Value;
         IRepository<Sushi> IUnitOfWork._sushiRepository => _sushiRepository.Value;
-
-        public EfUnitOfWork(AppDbContext context)
+        public FakeUnitOfWork(AppDbContext context)
         {
             _context = context;
-            _setRepository = new Lazy<IRepository<Set>>(() => new EfRepository<Set>(context));
-            _sushiRepository = new Lazy<IRepository<Sushi>>(() => new EfRepository<Sushi>(context));
+            _setRepository = new Lazy<IRepository<Set>>(() => new FakeSetRepository(context));
+            _sushiRepository = new Lazy<IRepository<Sushi>>(() => new FakeSushiRepository(context));
         }
 
         public async Task CreateDatabaseAsync()

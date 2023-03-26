@@ -1,8 +1,10 @@
 ﻿using Lab5.Domain.Entities;
 using System.Linq.Expressions;
 
-namespace Lab5.Domain.Abstractions {
-    public interface IRepository<T> where T : Entity {
+namespace Lab5.Domain.Abstractions
+{
+    public interface IRepository<T> where T : Entity
+    {
 
         Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default,
         params Expression<Func<T, object>>[]? includesProperties);
