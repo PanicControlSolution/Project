@@ -14,8 +14,4 @@
     <ProjectReference Include="..\Lab5.Domain\Lab5.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
-
 </Project>
