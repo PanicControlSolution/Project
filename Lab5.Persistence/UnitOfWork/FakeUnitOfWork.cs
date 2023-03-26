@@ -11,13 +11,9 @@ namespace Lab5.Persistence.UnitOfWork
         private readonly Lazy<IRepository<Set>> _setRepository;
         private readonly Lazy<IRepository<Sushi>> _sushiRepository;
 
-
         //implementation of interface
         IRepository<Set> IUnitOfWork._setRepository => _setRepository.Value;
         IRepository<Sushi> IUnitOfWork._sushiRepository => _sushiRepository.Value;
-
-
-
         public FakeUnitOfWork(AppDbContext context)
         {
             _context = context;

@@ -6,7 +6,6 @@ namespace Lab5.Persistence.Repository
 {
     internal class EfRepository<T> : IRepository<T> where T : Entity
     {
-
         private readonly DbContext _dbContext;
         private readonly DbSet<T> _entities;
 

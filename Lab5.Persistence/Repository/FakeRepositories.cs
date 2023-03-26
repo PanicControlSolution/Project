@@ -3,7 +3,6 @@ using Lab5.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-
 namespace Lab5.Persistence.Repository
 {
     public class FakeSetRepository : IRepository<Set>
@@ -73,8 +72,8 @@ namespace Lab5.Persistence.Repository
             _list.Add(new Sushi(1, "Ролл морских водорослях со сливочным сыром, краб миксом, такуаном, соусом Ореховым и кунжутом", 8, 2));
             _list.Add(new Sushi(2, "Ролл в миксе копченого лосося и морского окуня со сливочным сыром и тобико с сливочным сыром, салатом айсберг, картофелем пай", 8, 2));
         }
-        public async Task<IReadOnlyList<Sushi>>
-        ListAsync(Expression<Func<Sushi, bool>> filter, CancellationToken
+
+        public async Task<IReadOnlyList<Sushi>> ListAsync(Expression<Func<Sushi, bool>> filter, CancellationToken
         cancellationToken = default, params Expression<Func<Sushi, object>>[]?
         includesProperties)
         {
@@ -112,5 +111,4 @@ namespace Lab5.Persistence.Repository
             throw new NotImplementedException();
         }
     }
-
 }

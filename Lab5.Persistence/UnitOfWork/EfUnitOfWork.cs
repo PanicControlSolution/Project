@@ -6,18 +6,14 @@ using Lab5.Persistence.Repository;
 namespace Lab5.Persistence.UnitOfWork
 {
     internal class EfUnitOfWork : IUnitOfWork
-
     {
         private readonly AppDbContext _context;
         private readonly Lazy<IRepository<Set>> _setRepository;
         private readonly Lazy<IRepository<Sushi>> _sushiRepository;
 
-
         //implementation of interface
         IRepository<Set> IUnitOfWork._setRepository => _setRepository.Value;
         IRepository<Sushi> IUnitOfWork._sushiRepository => _sushiRepository.Value;
-
-
 
         public EfUnitOfWork(AppDbContext context)
         {
