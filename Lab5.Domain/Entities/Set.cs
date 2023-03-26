@@ -1,9 +1,11 @@
 ﻿using SQLite;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Lab5.Domain.Entities {
+namespace Lab5.Domain.Entities
+{
     [Table("Sets")]
-    public class Set : Entity {
+    public class Set : Entity
+    {
         [SQLite.NotNull]
         public double Cost { get; set; }
         [AllowNull]

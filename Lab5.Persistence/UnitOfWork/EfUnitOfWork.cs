@@ -16,7 +16,7 @@ namespace Lab5.Persistence.UnitOfWork
         //implementation of interface
         IRepository<Set> IUnitOfWork._setRepository => _setRepository.Value;
         IRepository<Sushi> IUnitOfWork._sushiRepository => _sushiRepository.Value;
-        
+
 
 
         public EfUnitOfWork(AppDbContext context)
