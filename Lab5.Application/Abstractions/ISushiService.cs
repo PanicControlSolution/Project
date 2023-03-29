@@ -1,0 +1,9 @@
+﻿using Lab5.Domain.Entities;
+
+namespace Lab5.Application.Abstractions
+{
+    public interface ISushiService : IBaseService<Sushi>
+    {
+        public Task<IEnumerable<Sushi>> GetAllSet(int id);
+    }
+}
