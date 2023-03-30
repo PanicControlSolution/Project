@@ -1,7 +1,9 @@
 ﻿using Lab5.Domain.Entities;
 
-namespace Lab5.Domain.Abstractions {
-    public interface IUnitOfWork {
+namespace Lab5.Domain.Abstractions
+{
+    public interface IUnitOfWork
+    {
 
         IRepository<Set> _setRepository { get; }
 

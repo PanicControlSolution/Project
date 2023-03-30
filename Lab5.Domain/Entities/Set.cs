@@ -10,5 +10,14 @@ namespace Lab5.Domain.Entities
         public string? Description { get; set; }
         [NotNull]
         public double Weigth { get; set; }
+
+        public Set(int id, double cost, string name, string? description, double weight)
+        {
+            Id = id;
+            Cost = cost;
+            Description = description;
+            Weigth = weight;
+            Name = name;
+        }
     }
 }
