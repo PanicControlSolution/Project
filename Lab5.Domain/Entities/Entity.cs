@@ -6,7 +6,7 @@ namespace Lab5.Domain.Entities
     {
         [Indexed, PrimaryKey, AutoIncrement]
         public int Id { get; init; }
-        [SQLite.NotNull, Unique]
+        [NotNull, Unique]
         public string Name { get; set; } = "";
     }
 }
