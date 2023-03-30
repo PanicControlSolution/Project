@@ -1,8 +1,10 @@
 ﻿using SQLite;
 
-namespace Lab5.Domain.Entities {
+namespace Lab5.Domain.Entities
+{
     [Table("Sushi")]
-    public class Sushi : Entity {
+    public class Sushi : Entity
+    {
         [NotNull]
         public int Count { get; set; }
         [NotNull]
