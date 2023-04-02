@@ -2,6 +2,8 @@ name: Build app for Windows
 
 on:
   push:
+    branches:
+      - "*"
     tags:
       - "*"
     paths-ignore:
