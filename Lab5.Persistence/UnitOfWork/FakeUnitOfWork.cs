@@ -5,7 +5,7 @@ using Lab5.Persistence.Repository;
 
 namespace Lab5.Persistence.UnitOfWork
 {
-    internal class FakeUnitOfWork : IUnitOfWork
+    public class FakeUnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _context;
         private readonly Lazy<IRepository<Set>> _setRepository;
