@@ -1,4 +1,8 @@
 ﻿using CommunityToolkit.Maui;
+using Lab5.Application.Abstractions;
+using Lab5.Application.Services;
+using Lab5.Domain.Abstractions;
+using Lab5.Persistence.UnitOfWork;
 using Microsoft.Extensions.Logging;
 
 namespace Lab5.UI
@@ -19,9 +23,17 @@ namespace Lab5.UI
 
 #if DEBUG
             builder.Logging.AddDebug();
-#endif
+#endif  
+            SetupServices(builder.Services);
 
             return builder.Build();
+        }
+
+        private static void SetupServices(IServiceCollection services)
+        {
+            services.AddSingleton<IUnitOfWork, FakeUnitOfWork>();
+            services.AddSingleton<ISetService, SetService>();
+            services.AddSingleton<ISushiService, SushiService>();
         }
     }
 }
