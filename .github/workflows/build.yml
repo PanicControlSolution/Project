@@ -24,14 +24,12 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.0
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1
       - name: Install MAUI Workloads
         run: dotnet workload install maui --no-cache
       - name: Restore Dependencies
         run: dotnet restore Lab5.UI/Lab5.UI.csproj
       - name: Build MAUI Windows
-        run: msbuild Lab5.UI/Lab5.UI.csproj -r -p:Configuration=Release -p:RestorePackages=false /p:GenerateAppxPackageOnBuild=true
+        run: dotnet publish Lab5.UI/Lab5.UI.csproj -f net7.0-windows10.0.19041.0 -c Release --no-restore
       - name: Upload Windows Artifact
         uses: actions/upload-artifact@v3.1.2
         with:
