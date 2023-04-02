@@ -27,7 +27,7 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
       - name: Install MAUI Workloads
-        run: dotnet workload install maui
+        run: dotnet workload install maui --no-cache
       - name: Restore Dependencies
         run: dotnet restore Lab5.UI/Lab5.UI.csproj
       - name: Build MAUI Windows
