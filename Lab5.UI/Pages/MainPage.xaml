@@ -5,6 +5,11 @@
 
     <ScrollView>
 
+        <Label
+            Text="TEST">
+            
+        </Label>
+
     </ScrollView>
 
 </ContentPage>

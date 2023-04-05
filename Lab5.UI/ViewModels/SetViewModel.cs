@@ -11,43 +11,43 @@ namespace Lab5.UI.ViewModels
         private readonly ISetService _setService;
         private readonly ISushiService _sushiService;
 
-        public SetViewModel(ISetService courceService, ISushiService traineeService)
+        public SetViewModel(ISetService setService, ISushiService sushiService)
         {
-            _setService = courceService;
-            _sushiService = traineeService;
+            _setService = setService;
+            _sushiService = sushiService;
         }
 
-        public ObservableCollection<Set> Cources { get; set; } = new();
-        public ObservableCollection<Sushi> Trainees { get; set; } = new();
+        public ObservableCollection<Set> Sets { get; set; } = new();
+        public ObservableCollection<Sushi> Sushi{ get; set; } = new();
 
         [ObservableProperty]
         Set selectedSet;
 
         [RelayCommand]
-        async void UpdateGroupList() => await GetCources();
+        async void UpdateGroupList() => await GetSets();
         [RelayCommand]
-        async void UpdateMembersList() => await GetTrainees();
+        async void UpdateMembersList() => await GetSushi();
 
-        public async Task GetCources()
+        public async Task GetSets()
         {
-            var cources = await _setService.GetAllAsync();
+            var sets = await _setService.GetAllAsync();
             await MainThread.InvokeOnMainThreadAsync(() =>
             {
-                Cources.Clear();
-                foreach (var cource in cources)
-                    Cources.Add(cource);
+                Sets.Clear();
+                foreach (var cource in sets)
+                    Sets.Add(cource);
             });
         }
 
-        public async Task GetTrainees()
+        public async Task GetSushi()
         {
-            var trainees = await _setService.GetAllBySetIdAsync(SelectedSet.Id);
+            var sushi = await _setService.GetAllBySetIdAsync(SelectedSet.Id);
             await MainThread.InvokeOnMainThreadAsync(() =>
             {
 
-                Trainees.Clear();
-                foreach (var trainee in trainees)
-                    Trainees.Add(trainee);
+                Sushi.Clear();
+                foreach (var trainee in sushi)
+                    Sushi.Add(trainee);
             });
         }
     }
