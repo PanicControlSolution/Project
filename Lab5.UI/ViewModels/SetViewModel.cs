@@ -10,12 +10,13 @@ namespace Lab5.UI.ViewModels
     {
         private readonly ISetService _setService;
         private readonly ISushiService _sushiService;
-        public SetViewModel(ISetService courceService, ISushiService
-        traineeService)
+
+        public SetViewModel(ISetService courceService, ISushiService traineeService)
         {
             _setService = courceService;
             _sushiService = traineeService;
         }
+
         public ObservableCollection<Set> Cources { get; set; } = new();
         public ObservableCollection<Sushi> Trainees { get; set; } = new();
 
@@ -25,6 +26,7 @@ namespace Lab5.UI.ViewModels
         async void UpdateGroupList() => await GetCources();
         [RelayCommand]
         async void UpdateMembersList() => await GetTrainees();
+
         public async Task GetCources()
         {
             var cources = await _setService.GetAllAsync();
@@ -35,13 +37,14 @@ namespace Lab5.UI.ViewModels
                     Cources.Add(cource);
             });
         }
+
         public async Task GetTrainees()
         {
             var trainees = await _setService.GetAllBySetIdAsync(SelectedSet.Id);
             await MainThread.InvokeOnMainThreadAsync(() =>
             {
-                
-            Trainees.Clear();
+
+                Trainees.Clear();
                 foreach (var trainee in trainees)
                     Trainees.Add(trainee);
             });
