@@ -22,6 +22,7 @@ namespace Lab5.UI.ViewModels
 
         [ObservableProperty]
         Set selectedSet;
+
         [RelayCommand]
         async void UpdateGroupList() => await GetCources();
         [RelayCommand]
