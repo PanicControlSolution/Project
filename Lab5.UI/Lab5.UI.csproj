@@ -61,8 +61,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Pages\" />
-	  <Folder Include="ViewModels\" />
+	  <MauiXaml Update="Pages\Sets.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

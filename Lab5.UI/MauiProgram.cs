@@ -3,6 +3,7 @@ using Lab5.Application.Abstractions;
 using Lab5.Application.Services;
 using Lab5.Domain.Abstractions;
 using Lab5.Persistence.UnitOfWork;
+using Lab5.UI.ViewModels;
 using Microsoft.Extensions.Logging;
 
 namespace Lab5.UI
@@ -34,6 +35,7 @@ namespace Lab5.UI
             services.AddSingleton<IUnitOfWork, FakeUnitOfWork>();
             services.AddSingleton<ISetService, SetService>();
             services.AddSingleton<ISushiService, SushiService>();
+            services.AddSingleton<SetViewModel>();
         }
     }
 }
