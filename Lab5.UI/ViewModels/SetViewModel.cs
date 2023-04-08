@@ -48,7 +48,9 @@ namespace Lab5.UI.ViewModels
                 Sushi.Clear();
                 foreach (var trainee in sushi)
                     Sushi.Add(trainee);
-            });
+            }
+            
+            );
         }
     }
 }

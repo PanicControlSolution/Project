@@ -9,6 +9,6 @@
     <ShellContent Title="Home"
                   ContentTemplate="{DataTemplate local:MainPage}"/>
     <ShellContent Title="Sushi sets"
-                  ContentTemplate="{DataTemplate local:Pages.Sets}"/>
+                  ContentTemplate="{DataTemplate pages:Sets}"/>
 
 </Shell>

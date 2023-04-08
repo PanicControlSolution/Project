@@ -4,9 +4,9 @@ namespace Lab5.UI.Pages;
 
 public partial class Sets : ContentPage
 {
-	public Sets(SetViewModel setViewModel)
+	public Sets(/*SetViewModel setViewModel*/)
 	{
 		InitializeComponent();
-        BindingContext = setViewModel;
+        /*BindingContext = setViewModel;*/
     }
 }
