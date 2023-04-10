@@ -1,9 +1,10 @@
-﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui;
 using Lab5.Application.Abstractions;
 using Lab5.Application.Services;
 using Lab5.Domain.Abstractions;
 using Lab5.Persistence.Data;
 using Lab5.Persistence.UnitOfWork;
+using Lab5.UI.Pages;
 using Lab5.UI.ViewModels;
 using Microsoft.Extensions.Logging;
 

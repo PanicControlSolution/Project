@@ -7,8 +7,10 @@
        Shell.FlyoutBehavior="Flyout">
 
     <ShellContent Title="Home"
-                  ContentTemplate="{DataTemplate local:MainPage}"/>
+                  ContentTemplate="{DataTemplate local:MainPage}"
+                  Route="MainPage"/>
     <ShellContent Title="Sushi sets"
-                  ContentTemplate="{DataTemplate pages:Sets}"/>
+                  ContentTemplate="{DataTemplate pages:Sets}"
+                  Route="Sets"/>
 
 </Shell>
