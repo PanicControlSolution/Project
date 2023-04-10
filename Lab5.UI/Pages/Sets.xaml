@@ -22,13 +22,12 @@
             FontSize="Medium"
             SelectedItem="{Binding SelectedSet}">
 
-
             <Picker.Behaviors>
                 <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
                                                 Command="{Binding UpdateMembersListCommand}"/>
             </Picker.Behaviors>
+            
         </Picker>
-
 
         <CollectionView
             x:Name="SushiView"

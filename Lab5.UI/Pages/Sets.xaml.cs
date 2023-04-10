@@ -9,7 +9,6 @@ public partial class Sets : ContentPage
     public Sets(SetViewModel setViewModel)
     {
         InitializeComponent();
-        _viewModel = setViewModel;
         BindingContext = setViewModel;
     }
 
