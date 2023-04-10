@@ -18,7 +18,7 @@ namespace Lab5.UI.ViewModels
         }
 
         public ObservableCollection<Set> Sets { get; set; } = new();
-        public ObservableCollection<Sushi> Sushi{ get; set; } = new();
+        public ObservableCollection<Sushi> Sushi { get; set; } = new();
 
         [ObservableProperty]
         Set selectedSet;
@@ -34,8 +34,8 @@ namespace Lab5.UI.ViewModels
             await MainThread.InvokeOnMainThreadAsync(() =>
             {
                 Sets.Clear();
-                foreach (var cource in sets)
-                    Sets.Add(cource);
+                foreach (var set in Sets)
+                    Sets.Add(set);
             });
         }
 
@@ -46,11 +46,9 @@ namespace Lab5.UI.ViewModels
             {
 
                 Sushi.Clear();
-                foreach (var s in sushi)
-                    Sushi.Add(s);
-            }
-            
-            );
+                foreach (var sushi in Sushi)
+                    Sushi.Add(sushi);
+            });
         }
     }
 }

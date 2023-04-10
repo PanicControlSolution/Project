@@ -3,14 +3,13 @@
        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:Lab5.UI"
-       xmlns:pages="clr-namespace:Lab5.UI.Pages"
-       Shell.FlyoutBehavior="Flyout">
+       xmlns:pages="clr-namespace:Lab5.UI.Pages">
 
     <ShellContent Title="Home"
                   ContentTemplate="{DataTemplate local:MainPage}"
-                  Route="MainPage"/>
+                  Route="MainPage" />
     <ShellContent Title="Sushi sets"
                   ContentTemplate="{DataTemplate pages:Sets}"
-                  Route="Sets"/>
+                  Route="Sets" />
 
 </Shell>

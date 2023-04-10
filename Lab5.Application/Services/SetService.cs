@@ -10,7 +10,7 @@ namespace Lab5.Application.Services
 
         public SetService(IUnitOfWork unit)
         {
-            _unitOfWork= unit;
+            _unitOfWork = unit;
         }
 
         public Task AddAsync(Set item)
