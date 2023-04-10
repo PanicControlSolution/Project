@@ -27,6 +27,8 @@ namespace Lab5.UI
             builder.Logging.AddDebug();
 #endif
             SetupServices(builder.Services);
+            SetupViewModels(builder.Services);
+            SetupViews(builder.Services);
 
             return builder.Build();
         }
@@ -39,9 +41,16 @@ namespace Lab5.UI
 
             services.AddSingleton<ISetService, SetService>();
             services.AddSingleton<ISushiService, SushiService>();
+        }
 
-            services.AddTransient<Pages.Sets>();
+        private static void SetupViewModels(IServiceCollection services)
+        {
             services.AddTransient<SetViewModel>();
+        }
+
+        private static void SetupViews(IServiceCollection services)
+        {
+            services.AddTransient<Pages.Sets>();
         }
     }
 }
