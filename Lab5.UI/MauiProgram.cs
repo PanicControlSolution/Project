@@ -40,7 +40,8 @@ namespace Lab5.UI
             services.AddSingleton<ISetService, SetService>();
             services.AddSingleton<ISushiService, SushiService>();
 
-            services.AddSingleton<SetViewModel>();
+            services.AddTransient<Pages.Sets>();
+            services.AddTransient<SetViewModel>();
         }
     }
 }
