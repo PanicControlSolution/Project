@@ -7,7 +7,8 @@ namespace Lab5.Application.Services
     public class SushiService : ISushiService
     {
         private IUnitOfWork _unitOfWork;
-        public SushiService(IUnitOfWork unit) {
+        public SushiService(IUnitOfWork unit)
+        {
             _unitOfWork = unit;
         }
         public Task AddAsync(Sushi item)

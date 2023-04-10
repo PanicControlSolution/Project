@@ -4,9 +4,8 @@
              x:Class="Lab5.UI.Pages.Sets"
              Title="Sets">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Label Text="Welcome to .NET MAUI!"
+               VerticalOptions="Center"
+               HorizontalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>
