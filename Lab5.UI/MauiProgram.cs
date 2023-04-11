@@ -1,7 +1,8 @@
-﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui;
 using Lab5.Application.Abstractions;
 using Lab5.Application.Services;
 using Lab5.Domain.Abstractions;
+using Lab5.Persistence.Data;
 using Lab5.Persistence.UnitOfWork;
 using Lab5.UI.ViewModels;
 using Microsoft.Extensions.Logging;
@@ -24,18 +25,32 @@ namespace Lab5.UI
 
 #if DEBUG
             builder.Logging.AddDebug();
-#endif  
+#endif
             SetupServices(builder.Services);
+            SetupViewModels(builder.Services);
+            SetupViews(builder.Services);
 
             return builder.Build();
         }
 
         private static void SetupServices(IServiceCollection services)
         {
+            services.AddSingleton(new AppDbContext(new Microsoft.EntityFrameworkCore.DbContextOptions<AppDbContext>()));
+
             services.AddSingleton<IUnitOfWork, FakeUnitOfWork>();
+
             services.AddSingleton<ISetService, SetService>();
             services.AddSingleton<ISushiService, SushiService>();
-            services.AddSingleton<SetViewModel>();
+        }
+
+        private static void SetupViewModels(IServiceCollection services)
+        {
+            services.AddTransient<SetViewModel>();
+        }
+
+        private static void SetupViews(IServiceCollection services)
+        {
+            services.AddTransient<Pages.Sets>();
         }
     }
 }
