@@ -9,32 +9,30 @@
              Title="Sets">
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior EventName="Loaded"
-                                        Command="{Binding UpdateGroupListCommand}"/>
+                                        Command="{Binding UpdateGroupListCommand}" />
     </ContentPage.Behaviors>
 
     <VerticalStackLayout>
-        <Picker
-            HorizontalOptions="Center"
-            VerticalOptions="Center"
-            Title="Select set"
-            ItemsSource="{Binding Sets}"
-            ItemDisplayBinding="{Binding Name}"
-            FontSize="Medium"
-            SelectedItem="{Binding SelectedSet}">
+        <Picker HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Title="Select set"
+                ItemsSource="{Binding Sets}"
+                ItemDisplayBinding="{Binding Name}"
+                FontSize="Medium"
+                SelectedItem="{Binding SelectedSet}">
 
             <Picker.Behaviors>
                 <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
-                                                Command="{Binding UpdateMembersListCommand}"/>
+                                                Command="{Binding UpdateMembersListCommand}" />
             </Picker.Behaviors>
-            
+
         </Picker>
 
-        <CollectionView
-            x:Name="SushiView"
-            ItemsSource="{Binding Sushi}"
-            HorizontalOptions="Center"
-            VerticalOptions="Center"
-            BackgroundColor="Grey">
+        <CollectionView x:Name="SushiView"
+                        ItemsSource="{Binding Sushi}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        BackgroundColor="Grey">
 
             <!--CollectionView.Header>
                 <DataTemplate
@@ -79,22 +77,20 @@
                     <Grid Padding="10"
                           RowDefinitions="100, 30"
                           HorizontalOptions="Fill">
-                        <Label
-                            Grid.Row="0"
-                            Text="{Binding Name}"
-                            TextColor="White"
-                            FontSize="Medium"
-                            HorizontalOptions="Fill"
-                            VerticalOptions="Fill"
-                            FontAutoScalingEnabled="True">
+                        <Label Grid.Row="0"
+                               Text="{Binding Name}"
+                               TextColor="White"
+                               FontSize="Medium"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="Fill"
+                               FontAutoScalingEnabled="True">
                         </Label>
 
-                        <Label
-                            Grid.Row="1"
-                            Text="{Binding Count, StringFormat='Количество: {0:D}'}"
-                            FontSize="Small"
-                            TextColor="White">
-                            
+                        <Label Grid.Row="1"
+                               Text="{Binding Count, StringFormat='Количество: {0:D}'}"
+                               FontSize="Small"
+                               TextColor="White">
+
                         </Label>
                     </Grid>
 
