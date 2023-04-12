@@ -34,8 +34,10 @@ namespace Lab5.UI.ViewModels
             await MainThread.InvokeOnMainThreadAsync(() =>
             {
                 Sets.Clear();
-                foreach (var set in Sets)
+                foreach (var set in sets)
+                {
                     Sets.Add(set);
+                }
             });
         }
 
@@ -46,8 +48,10 @@ namespace Lab5.UI.ViewModels
             {
 
                 Sushi.Clear();
-                foreach (var sushi in Sushi)
+                foreach (var sushi in sushi)
+                {
                     Sushi.Add(sushi);
+                }
             });
         }
     }

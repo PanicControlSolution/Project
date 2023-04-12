@@ -10,7 +10,7 @@ public partial class Sets : ContentPage
     {
         InitializeComponent();
         _viewModel = setViewModel;
-        BindingContext = setViewModel;
+        BindingContext = _viewModel;
     }
 
 }
