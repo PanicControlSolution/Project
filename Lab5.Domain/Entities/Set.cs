@@ -6,7 +6,7 @@
         public string? Description { get; set; }
         public double Weight { get; set; }
 
-        public List<Sushi> Sushi { get; set; }
+        public List<Sushi> Sushi { get; set; } = new();
 
         public Set(int id, double cost, string name, string? description, double weight)
         {
