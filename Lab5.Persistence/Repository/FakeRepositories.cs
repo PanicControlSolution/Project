@@ -18,8 +18,7 @@ namespace Lab5.Persistence.Repository
             _dbContext = dbContext;
         }
 
-        public async Task<IReadOnlyList<Set>> ListAllAsync(CancellationToken
-            cancellationToken = default)
+        public async Task<IReadOnlyList<Set>> ListAllAsync(CancellationToken cancellationToken = default)
         {
             return await Task.Run(() => _sets);
         }
