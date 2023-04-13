@@ -1,4 +1,4 @@
-﻿namespace Lab5.Domain.Entities
+namespace Lab5.Domain.Entities
 {
     public class Set : Entity
     {
