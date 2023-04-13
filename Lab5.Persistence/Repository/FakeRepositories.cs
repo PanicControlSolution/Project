@@ -7,16 +7,14 @@ namespace Lab5.Persistence.Repository
 {
     public class FakeSetRepository : IRepository<Set>
     {
-        List<Set> _sets;
+        private List<Set> _sets;
         private readonly DbContext _dbContext;
+        public static List<Set> set = new List<Set> { new Set(1, 45.99, "Сяке сет", "Много огурцов", 450),
+                new Set(2, 36.99, "Кунсей сет", "Нету огурцов", 300) };
 
         public FakeSetRepository(DbContext dbContext)
         {
-            _sets = new List<Set>()
-            {
-                new Set(1, 45.99, "Сяке сет", "Много огурцов", 450),
-                new Set(2, 36.99, "Кунсей сет", "Нету огурцов", 300)
-            };
+            _sets = set;
             _dbContext = dbContext;
         }
 
@@ -59,18 +57,22 @@ namespace Lab5.Persistence.Repository
 
     public class FakeSushiRepository : IRepository<Sushi>
     {
-        List<Sushi> _list = new List<Sushi>();
+        private List<Sushi> _list = new();
         private readonly DbContext _dbContext;
 
         public FakeSushiRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
 
-            _list.Add(new Sushi(1, "Ролл с лососем", 8, 1));
-            _list.Add(new Sushi(2, "Ролл с лососем и сливочным сыром", 8, 1));
+            _list.Add(new Sushi(1, "Ролл с лососем", 8, new List<Set> { FakeSetRepository.set[0] }));
+            FakeSetRepository.set[0].Sushi.Add(_list.Last());
+            _list.Add(new Sushi(2, "Ролл с лососем и сливочным сыром", 8, new List<Set> { FakeSetRepository.set[0] }));
+            FakeSetRepository.set[0].Sushi.Add(_list.Last());
 
-            _list.Add(new Sushi(1, "Ролл морских водорослях со сливочным сыром, краб миксом, такуаном, соусом Ореховым и кунжутом", 8, 2));
-            _list.Add(new Sushi(2, "Ролл в миксе копченого лосося и морского окуня со сливочным сыром и тобико с сливочным сыром, салатом айсберг, картофелем пай", 8, 2));
+            _list.Add(new Sushi(1, "Ролл морских водорослях со сливочным сыром, краб миксом, такуаном, соусом Ореховым и кунжутом", 8, new List<Set> { FakeSetRepository.set[1] }));
+            FakeSetRepository.set[1].Sushi.Add(_list.Last());
+            _list.Add(new Sushi(2, "Ролл в миксе копченого лосося и морского окуня со сливочным сыром и тобико с сливочным сыром, салатом айсберг, картофелем пай", 8, new List<Set> { FakeSetRepository.set[1] }));
+            FakeSetRepository.set[1].Sushi.Add(_list.Last());
         }
 
         public async Task<IReadOnlyList<Sushi>> ListAsync(Expression<Func<Sushi, bool>> filter, CancellationToken

@@ -30,7 +30,7 @@ namespace Lab5.Application.Services
 
         public Task<IReadOnlyList<Sushi>> GetAllBySetIdAsync(int setId)
         {
-            return _unitOfWork._sushiRepository.ListAsync((sushi) => sushi.SetId.Equals(setId));
+            return (Task<IReadOnlyList<Sushi>>)_unitOfWork._setRepository.ListAsync((set) => set.Id.Equals(setId)).Result.Select(x => x.Sushi);
         }
 
         public Task<Set> GetByIdAsync(int id)

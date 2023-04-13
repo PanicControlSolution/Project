@@ -1,22 +1,19 @@
-﻿using SQLite;
-
-namespace Lab5.Domain.Entities
+﻿namespace Lab5.Domain.Entities
 {
-    [Table("Sets")]
     public class Set : Entity
     {
-        [NotNull]
         public double Cost { get; set; }
         public string? Description { get; set; }
-        [NotNull]
-        public double Weigth { get; set; }
+        public double Weight { get; set; }
+
+        public List<Sushi> Sushi { get; set; } = new();
 
         public Set(int id, double cost, string name, string? description, double weight)
         {
             Id = id;
             Cost = cost;
             Description = description;
-            Weigth = weight;
+            Weight = weight;
             Name = name;
         }
     }
