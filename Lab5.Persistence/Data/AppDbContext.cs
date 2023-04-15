@@ -1,4 +1,4 @@
-﻿using Lab5.Domain.Entities;
+using Lab5.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lab5.Persistence.Data
