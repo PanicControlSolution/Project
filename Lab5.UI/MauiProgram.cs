@@ -40,8 +40,8 @@ namespace Lab5.UI
             SetupServices(builder.Services);
             SetupViewModels(builder.Services);
             SetupViews(builder.Services);
-           // AddDbContext(builder);
-           // SeedData(builder);
+            AddDbContext(builder);
+            SeedData(builder);
 
             return builder.Build();
         }
@@ -51,13 +51,14 @@ namespace Lab5.UI
         {
             var connStr = builder.Configuration
             .GetConnectionString("SqliteConnection");
-            string dataDirectory = String.Empty;
+            string dataDirectory = string.Empty;
 #if ANDROID
             dataDirectory = FileSystem.AppDataDirectory + "/";
 #endif
-            connStr = String.Format(connStr, dataDirectory);
+            connStr = string.Format(connStr, dataDirectory);
             var options = new DbContextOptionsBuilder<AppDbContext>()
             .UseSqlite(connStr)
+            .EnableSensitiveDataLogging()
             .Options;
             builder.Services.AddSingleton((s) => new AppDbContext(options));
         }
@@ -71,25 +72,56 @@ namespace Lab5.UI
             var unitOfWork = provider.GetService<IUnitOfWork>();
             await unitOfWork.RemoveDatbaseAsync();
             await unitOfWork.CreateDatabaseAsync();
-            // Add cources
+            // Add sets
             IList<Set> sets = new List<Set>()
         {
             new Set(1, 129.99, "Сяке сет", "Без огурцов", 1200),
             new Set(2, 139.99, "Кунсей сет", "Много огурцов", 1400)
         };
+
             foreach (var set in sets)
                 await unitOfWork._setRepository.AddAsync(set);
-            await unitOfWork.SaveAllAsync();
+            try
+            {
+                await unitOfWork.SaveAllAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
             //Add sushi
-            foreach (var set in sets)
-                for (int j = 0; j < 10; j++)
-                    await unitOfWork._sushiRepository.AddAsync(new Sushi(j, $"Суши {j}", 4, new List<Set> { sets[0] }));
-            await unitOfWork.SaveAllAsync();
+            for (int j = 1; j < 10; j++)
+                await unitOfWork._sushiRepository.AddAsync(new Sushi(j, $"Суши {j}", 4, new List<Set> { sets[0] }));
+            /*for (int i = 1; i < 10; i++)
+                unitOfWork._sushiRepository.ListAllAsync().Result[i].Sets.Add(sets[0]);*/
+            for (int j = 10; j < 19; j++)
+            {
+                await unitOfWork._sushiRepository.AddAsync(new Sushi(j, $"Суши {j}", 4, new List<Set> { sets[1] }));
+            }
+            
+
+
+            try
+            {
+                await unitOfWork.SaveAllAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
         private static void SetupServices(IServiceCollection services)
         {
-            services.AddSingleton(new AppDbContext(new Microsoft.EntityFrameworkCore.DbContextOptions<AppDbContext>()));
-            services.AddSingleton<IUnitOfWork, FakeUnitOfWork>();
+            //services.AddSingleton(new AppDbContext(new Microsoft.EntityFrameworkCore.DbContextOptions<AppDbContext>()));
+            //services.AddSingleton<IUnitOfWork, FakeUnitOfWork>();
 
             services.AddSingleton<ISetService, SetService>();
             services.AddSingleton<ISushiService, SushiService>();

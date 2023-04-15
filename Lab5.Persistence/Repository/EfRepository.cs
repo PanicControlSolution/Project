@@ -26,17 +26,17 @@ namespace Lab5.Persistence.Repository
                 throw new ArgumentNullException(nameof(entity), "Entity cannot be null");
             }
 
-            _dbContext.Set<T>().Remove(entity);
+            _entities.Remove(entity);
         }
 
         public async Task<T> FirstOrDefaultAsync(System.Linq.Expressions.Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
         {
-            return await _dbContext.Set<T>().FirstOrDefaultAsync(filter, cancellationToken);
+            return await _entities.FirstOrDefaultAsync(filter, cancellationToken);
         }
 
         public async Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default, params System.Linq.Expressions.Expression<Func<T, object>>[]? includesProperties)
         {
-            var query = _dbContext.Set<T>().AsQueryable();
+            var query = _entities.AsQueryable();
 
             if (includesProperties != null)
             {
@@ -48,12 +48,12 @@ namespace Lab5.Persistence.Repository
 
         public async Task<IReadOnlyList<T>> ListAllAsync(CancellationToken cancellationToken = default)
         {
-            return await _dbContext.Set<T>().ToListAsync(cancellationToken);
+            return await _entities.ToListAsync(cancellationToken);
         }
 
         public async Task<IReadOnlyList<T>> ListAsync(System.Linq.Expressions.Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default, params System.Linq.Expressions.Expression<Func<T, object>>[]? includesProperties)
         {
-            var query = _dbContext.Set<T>().Where(filter);
+            var query = _entities.Where(filter);
 
             if (includesProperties != null)
             {

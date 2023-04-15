@@ -9,7 +9,7 @@
                   ContentTemplate="{DataTemplate pages:Sets}"
                   Route="Sets"/>
     <ShellContent Title="Home"
-                  ContentTemplate="{DataTemplate local:MainPage}"
+                  ContentTemplate="{DataTemplate pages:MainPage}"
                   Route="MainPage"/>
 
 </Shell>
