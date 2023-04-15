@@ -8,17 +8,17 @@ namespace Lab5.Persistence.UnitOfWork
     public class FakeUnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _context;
-        private readonly Lazy<IRepository<Set>> _setRepository;
-        private readonly Lazy<IRepository<Sushi>> _sushiRepository;
+        private readonly IRepository<Set> _setRepository;
+        private readonly IRepository<Sushi> _sushiRepository;
 
         //implementation of interface
-        IRepository<Set> IUnitOfWork._setRepository => _setRepository.Value;
-        IRepository<Sushi> IUnitOfWork._sushiRepository => _sushiRepository.Value;
+        IRepository<Set> IUnitOfWork._setRepository => _setRepository;
+        IRepository<Sushi> IUnitOfWork._sushiRepository => _sushiRepository;
         public FakeUnitOfWork(AppDbContext context)
         {
             _context = context;
-            _setRepository = new Lazy<IRepository<Set>>(() => new FakeSetRepository(context));
-            _sushiRepository = new Lazy<IRepository<Sushi>>(() => new FakeSushiRepository(context));
+            _sushiRepository = new FakeSushiRepository(context);
+            _setRepository = new FakeSetRepository(context);
         }
 
         public async Task CreateDatabaseAsync()

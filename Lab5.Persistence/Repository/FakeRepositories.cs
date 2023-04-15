@@ -47,7 +47,14 @@ namespace Lab5.Persistence.Repository
 
         Task<IReadOnlyList<Set>> IRepository<Set>.ListAsync(Expression<Func<Set, bool>> filter, CancellationToken cancellationToken, params Expression<Func<Set, object>>[]? includesProperties)
         {
-            throw new NotImplementedException();
+            var query = _sets.AsQueryable().Where(filter);
+
+            if (includesProperties != null)
+            {
+                query = includesProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+            }
+
+            return Task.FromResult((IReadOnlyList<Set>)query.ToList());
         }
 
         Task IRepository<Set>.UpdateAsync(Set entity, CancellationToken cancellationToken)
@@ -103,7 +110,7 @@ namespace Lab5.Persistence.Repository
 
         Task<IReadOnlyList<Sushi>> IRepository<Sushi>.ListAllAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.FromResult<IReadOnlyList<Sushi>>(_list);
         }
 
         Task IRepository<Sushi>.UpdateAsync(Sushi entity, CancellationToken cancellationToken)
