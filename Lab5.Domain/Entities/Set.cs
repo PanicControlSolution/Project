@@ -8,14 +8,13 @@
 
         public List<Sushi> Sushi { get; set; } = new();
 
-        public Set(int id, double cost, string name, string? description, double weight, string photo = "empty.png")
+        public Set(int id, double cost, string name, string? description, double weight, string photo = "empty.png") : base(id, name, photo)
         {
-            Id = id;
             Cost = cost;
             Description = description;
             Weight = weight;
-            Name = name;
-            Photo = photo;
         }
+
+        public Set() : base() { }
     }
 }
