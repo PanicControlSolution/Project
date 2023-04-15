@@ -104,7 +104,7 @@ namespace Lab5.Persistence.Repository
 
         Task<IReadOnlyList<Sushi>> IRepository<Sushi>.ListAllAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.FromResult<IReadOnlyList<Sushi>>(_list);
         }
 
         Task IRepository<Sushi>.UpdateAsync(Sushi entity, CancellationToken cancellationToken)

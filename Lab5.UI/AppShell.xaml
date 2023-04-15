@@ -5,11 +5,11 @@
        xmlns:local="clr-namespace:Lab5.UI"
        xmlns:pages="clr-namespace:Lab5.UI.Pages">
 
-    <ShellContent Title="Home"
-                  ContentTemplate="{DataTemplate local:MainPage}"
-                  Route="MainPage"/>
     <ShellContent Title="Sushi sets"
                   ContentTemplate="{DataTemplate pages:Sets}"
                   Route="Sets"/>
+    <ShellContent Title="Home"
+                  ContentTemplate="{DataTemplate local:MainPage}"
+                  Route="MainPage"/>
 
 </Shell>

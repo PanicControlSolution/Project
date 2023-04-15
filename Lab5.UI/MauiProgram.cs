@@ -37,24 +37,15 @@ namespace Lab5.UI
             using var stream = a.GetManifestResourceStream(settingsStream);
             builder.Configuration.AddJsonStream(stream);
 
-            AddDbContext(builder);
             SetupServices(builder.Services);
             SetupViewModels(builder.Services);
             SetupViews(builder.Services);
-            SeedData(builder.Services);
+           // AddDbContext(builder);
+           // SeedData(builder);
 
             return builder.Build();
         }
 
-        private static void SetupServices(IServiceCollection services)
-        {
-            //services.AddSingleton(new AppDbContext(new Microsoft.EntityFrameworkCore.DbContextOptions<AppDbContext>()));
-
-            services.AddSingleton<IUnitOfWork, EfUnitOfWork>();
-
-            services.AddSingleton<ISetService, SetService>();
-            services.AddSingleton<ISushiService, SushiService>();
-        }
 
         private static void AddDbContext(MauiAppBuilder builder)
         {
@@ -68,17 +59,20 @@ namespace Lab5.UI
             var options = new DbContextOptionsBuilder<AppDbContext>()
             .UseSqlite(connStr)
             .Options;
-            builder.Services.AddSingleton<AppDbContext>((s) => new AppDbContext(options));
+            builder.Services.AddSingleton((s) => new AppDbContext(options));
         }
 
-        public async static void SeedData(IServiceCollection services)
+        public async static void SeedData(MauiAppBuilder builder)
         {
-            using var provider = services.BuildServiceProvider();
+            builder.Services.AddSingleton<IUnitOfWork, EfUnitOfWork>();
+
+            using var provider = builder.Services.BuildServiceProvider();
+
             var unitOfWork = provider.GetService<IUnitOfWork>();
             await unitOfWork.RemoveDatbaseAsync();
             await unitOfWork.CreateDatabaseAsync();
             // Add cources
-            IReadOnlyList<Set> sets = new List<Set>()
+            IList<Set> sets = new List<Set>()
         {
             new Set(1, 129.99, "Сяке сет", "Без огурцов", 1200),
             new Set(2, 139.99, "Кунсей сет", "Много огурцов", 1400)
@@ -89,10 +83,17 @@ namespace Lab5.UI
             //Add sushi
             foreach (var set in sets)
                 for (int j = 0; j < 10; j++)
-                    await unitOfWork._sushiRepository.AddAsync(new Sushi(j, $"Суши {j}", 4, set.Id));
+                    await unitOfWork._sushiRepository.AddAsync(new Sushi(j, $"Суши {j}", 4, new List<Set> { sets[0] }));
             await unitOfWork.SaveAllAsync();
         }
+        private static void SetupServices(IServiceCollection services)
+        {
+            services.AddSingleton(new AppDbContext(new Microsoft.EntityFrameworkCore.DbContextOptions<AppDbContext>()));
+            services.AddSingleton<IUnitOfWork, FakeUnitOfWork>();
 
+            services.AddSingleton<ISetService, SetService>();
+            services.AddSingleton<ISushiService, SushiService>();
+        }
         private static void SetupViewModels(IServiceCollection services)
         {
             services.AddTransient<SetViewModel>();
