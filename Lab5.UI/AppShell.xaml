@@ -11,5 +11,8 @@
     <ShellContent Title="Sushi sets"
                   ContentTemplate="{DataTemplate pages:Sets}"
                   Route="Sets"/>
+    <ShellContent Title="Home"
+                  ContentTemplate="{DataTemplate local:MainPage}"
+                  Route="MainPage"/>
 
 </Shell>
