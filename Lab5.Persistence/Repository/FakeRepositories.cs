@@ -7,15 +7,16 @@ namespace Lab5.Persistence.Repository
 {
     public class FakeSetRepository : IRepository<Set>
     {
-        private List<Set> _sets;
-        private readonly DbContext _dbContext;
-        public static List<Set> set = new List<Set> { new Set(1, 45.99, "Сяке сет", "Много огурцов", 450),
-                new Set(2, 36.99, "Кунсей сет", "Нету огурцов", 300) };
+        private readonly List<Set> _sets;
+        public readonly static List<Set> set = new()
+        {
+            new Set(1, 45.99, "Сяке сет", "Много огурцов", 450),
+            new Set(2, 36.99, "Кунсей сет", "Нету огурцов", 300)
+        };
 
-        public FakeSetRepository(DbContext dbContext)
+        public FakeSetRepository(DbContext _)
         {
             _sets = set;
-            _dbContext = dbContext;
         }
 
         public async Task<IReadOnlyList<Set>> ListAllAsync(CancellationToken
@@ -46,7 +47,14 @@ namespace Lab5.Persistence.Repository
 
         Task<IReadOnlyList<Set>> IRepository<Set>.ListAsync(Expression<Func<Set, bool>> filter, CancellationToken cancellationToken, params Expression<Func<Set, object>>[]? includesProperties)
         {
-            throw new NotImplementedException();
+            var query = _sets.AsQueryable().Where(filter);
+
+            if (includesProperties != null)
+            {
+                query = includesProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+            }
+
+            return Task.FromResult((IReadOnlyList<Set>)query.ToList());
         }
 
         Task IRepository<Set>.UpdateAsync(Set entity, CancellationToken cancellationToken)
@@ -57,13 +65,10 @@ namespace Lab5.Persistence.Repository
 
     public class FakeSushiRepository : IRepository<Sushi>
     {
-        private List<Sushi> _list = new();
-        private readonly DbContext _dbContext;
+        private readonly List<Sushi> _list = new();
 
-        public FakeSushiRepository(DbContext dbContext)
+        public FakeSushiRepository(DbContext _)
         {
-            _dbContext = dbContext;
-
             _list.Add(new Sushi(1, "Ролл с лососем", 8, new List<Set> { FakeSetRepository.set[0] }));
             FakeSetRepository.set[0].Sushi.Add(_list.Last());
             _list.Add(new Sushi(2, "Ролл с лососем и сливочным сыром", 8, new List<Set> { FakeSetRepository.set[0] }));
@@ -105,7 +110,7 @@ namespace Lab5.Persistence.Repository
 
         Task<IReadOnlyList<Sushi>> IRepository<Sushi>.ListAllAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.FromResult<IReadOnlyList<Sushi>>(_list);
         }
 
         Task IRepository<Sushi>.UpdateAsync(Sushi entity, CancellationToken cancellationToken)

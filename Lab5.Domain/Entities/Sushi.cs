@@ -4,15 +4,14 @@
     {
         public int Count { get; set; }
 
-        public List<Set> Sets { get; set; }
+        public List<Set> Sets { get; set; } = new();
 
-        public Sushi(int id, string name, int count, IEnumerable<Set> sets, string photo = "empty.png")
+        public Sushi(int id, string name, int count, IEnumerable<Set> sets, string photo = "empty.png") : base(id, name, photo)
         {
-            Id = id;
             Count = count;
-            Name = name;
             Sets = sets.ToList();
-            Photo = photo;
         }
+
+        public Sushi() : base() { }
     }
 }
