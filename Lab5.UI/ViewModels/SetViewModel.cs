@@ -23,11 +23,6 @@ namespace Lab5.UI.ViewModels
         [ObservableProperty]
         Set selectedSet;
 
-        public ObservableCollection<int> SushiCountVariants { get; set; } = new(new int[] { 4, 8, 12, 16 });
-        [ObservableProperty]
-        int selectedCount = 8;
-
-
         [RelayCommand]
         async void UpdateGroupList() => await GetSets();
         [RelayCommand]

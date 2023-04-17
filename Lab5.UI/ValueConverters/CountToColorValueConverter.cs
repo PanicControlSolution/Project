@@ -1,6 +1,4 @@
-﻿
-
-using Lab5.Domain.Entities;
+﻿using Lab5.Domain.Entities;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;

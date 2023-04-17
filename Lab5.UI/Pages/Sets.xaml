@@ -34,15 +34,6 @@
 
         </Picker>
 
-        <Picker x:Name="SushiCountPicker"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Title="Количество суши"
-                ItemsSource="{Binding SushiCountVariants}"
-                FontSize="Medium">
-
-        </Picker>
-
         <CollectionView x:Name="SushiView"
                         ItemsSource="{Binding Sushi}"
                         HorizontalOptions="Center"
