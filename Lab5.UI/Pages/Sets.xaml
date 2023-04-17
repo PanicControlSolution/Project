@@ -14,7 +14,7 @@
     </ContentPage.Behaviors>
 
     <ContentPage.Resources>
-        <converters:CountToColorValueConverter x:Key="CountToColor"/>
+        <converters:CountToColorValueConverter x:Key="CountToColor" />
     </ContentPage.Resources>
 
     <VerticalStackLayout>
@@ -101,7 +101,6 @@
 
                         </Label>
 
-                      
                     </Grid>
 
                 </DataTemplate>

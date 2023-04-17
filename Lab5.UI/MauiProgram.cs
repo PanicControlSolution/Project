@@ -5,6 +5,7 @@ using Lab5.Domain.Abstractions;
 using Lab5.Persistence.Data;
 using Lab5.Persistence.UnitOfWork;
 using Lab5.UI.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Lab5.UI
@@ -35,7 +36,12 @@ namespace Lab5.UI
 
         private static void SetupServices(IServiceCollection services)
         {
-            services.AddSingleton(new AppDbContext(new Microsoft.EntityFrameworkCore.DbContextOptions<AppDbContext>()));
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+                .UseSqlite("Data Source=database.db")
+                .Options;
+
+
+            services.AddSingleton(new AppDbContext(options));
 
             services.AddSingleton<IUnitOfWork, FakeUnitOfWork>();
 
