@@ -28,12 +28,11 @@ namespace Lab5.Application.Services
             return _unitOfWork._setRepository.ListAllAsync();
         }
 
-        public Task<IReadOnlyList<Sushi>> GetAllBySetIdAsync(int setId)
+        public async Task<IReadOnlyList<Sushi>> GetAllBySetIdAsync(int setId)
         {
-            var allSushi = _unitOfWork._sushiRepository.ListAllAsync();
-            var sushiInSet = allSushi.Result.Where(s => s.Sets.Any(set => set.Id == setId)).ToList().AsReadOnly();
-
-            return Task.FromResult((IReadOnlyList<Sushi>)sushiInSet);
+            var set = await _unitOfWork._setRepository.GetByIdAsync(setId, default, s => s.Sushi);
+            
+            return (IReadOnlyList<Sushi>)set.Sushi;
         }
 
         public Task<Set> GetByIdAsync(int id)

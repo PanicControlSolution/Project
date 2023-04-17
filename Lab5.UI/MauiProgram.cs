@@ -103,8 +103,6 @@ namespace Lab5.UI
                 await unitOfWork._sushiRepository.AddAsync(new Sushi(j, $"Суши {j}", 4, new List<Set> { sets[1] }));
             }
             
-
-
             try
             {
                 await unitOfWork.SaveAllAsync();
