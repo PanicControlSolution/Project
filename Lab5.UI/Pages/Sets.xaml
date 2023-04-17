@@ -1,26 +1,49 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:models="clr-namespace:Lab5.UI.ViewModels" xmlns:entities="clr-namespace:Lab5.Domain.Entities;assembly=Lab5.Domain" xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit" x:DataType="models:SetViewModel" x:Class="Lab5.UI.Pages.Sets" Title="Sets">
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Lab5.UI.ViewModels"
+             xmlns:entities="clr-namespace:Lab5.Domain.Entities;assembly=Lab5.Domain"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="models:SetViewModel"
+             x:Class="Lab5.UI.Pages.Sets"
+             Title="Sets">
     <ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior EventName="Loaded" Command="{Binding UpdateGroupListCommand}" />
+        <toolkit:EventToCommandBehavior EventName="Loaded"
+                                        Command="{Binding UpdateGroupListCommand}" />
     </ContentPage.Behaviors>
 
     <VerticalStackLayout>
-        <Picker HorizontalOptions="Center" VerticalOptions="Center" Title="Select set" ItemsSource="{Binding Sets}" ItemDisplayBinding="{Binding Name}" FontSize="Medium" SelectedItem="{Binding SelectedSet}">
+        <Picker HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Title="Select set"
+                ItemsSource="{Binding Sets}"
+                ItemDisplayBinding="{Binding Name}"
+                FontSize="Medium"
+                SelectedItem="{Binding SelectedSet}">
 
             <Picker.Behaviors>
-                <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding UpdateMembersListCommand}" />
+                <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
+                                                Command="{Binding UpdateMembersListCommand}" />
             </Picker.Behaviors>
 
         </Picker>
 
-        <CollectionView x:Name="SushiView" ItemsSource="{Binding Sushi}" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Grey">
+        <CollectionView x:Name="SushiView"
+                        ItemsSource="{Binding Sushi}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        BackgroundColor="Grey">
 
             <CollectionView.Header>
                 <DataTemplate x:DataType="entities:Set">
                     <VerticalStackLayout>
-                        <Label Text="Информация о сете" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Yellow" />
+                        <Label Text="Информация о сете"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               TextColor="Yellow" />
 
-                        <Label Text="Описание сета: " TextColor="Yellow" />
+                        <Label Text="Описание сета: "
+                               TextColor="Yellow" />
                         <Label Text="{Binding Description}" />
 
                         <Label Text="Вес: " />
@@ -34,20 +57,33 @@
             </CollectionView.Header>
 
             <CollectionView.ItemTemplate>
-                <DataTemplate x:Name="SushiItem" x:DataType="entities:Sushi">
-                    <Grid Padding="10" RowDefinitions="100, 30" HorizontalOptions="Fill">
-                        <Label Grid.Row="0" Text="{Binding Name}" TextColor="White" FontSize="Medium" HorizontalOptions="Fill" VerticalOptions="Fill" FontAutoScalingEnabled="True">
+                <DataTemplate x:Name="SushiItem"
+                              x:DataType="entities:Sushi">
+                    <Grid Padding="10"
+                          RowDefinitions="100, 30"
+                          HorizontalOptions="Fill">
+                        <Label Grid.Row="0"
+                               Text="{Binding Name}"
+                               TextColor="White"
+                               FontSize="Medium"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="Fill"
+                               FontAutoScalingEnabled="True">
                         </Label>
 
-                        <Label Grid.Row="1" Text="{Binding Count, StringFormat='Количество: {0:D}'}" FontSize="Small" TextColor="White">
+                        <Label Grid.Row="1"
+                               Text="{Binding Count, StringFormat='Количество: {0:D}'}"
+                               FontSize="Small"
+                               TextColor="White">
 
                         </Label>
                     </Grid>
-
                 </DataTemplate>
+                
             </CollectionView.ItemTemplate>
-
+            
         </CollectionView>
-
+        
     </VerticalStackLayout>
+    
 </ContentPage>
