@@ -92,7 +92,6 @@
                                    TextColor="White">
 
                             </Label>
-
                         </Grid>
                     </Frame>
                 </DataTemplate>

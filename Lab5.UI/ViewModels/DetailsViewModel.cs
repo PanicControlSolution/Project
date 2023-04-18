@@ -8,7 +8,6 @@ namespace Lab5.UI.ViewModels
     public partial class DetailsViewModel : IQueryAttributable, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
         Sushi selectedObject;
         public Sushi SelectedObject
         {
