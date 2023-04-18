@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:Lab5.UI.ViewModels"
              xmlns:entities="clr-namespace:Lab5.Domain.Entities;assembly=Lab5.Domain"
+             xmlns:converters="clr-namespace:Lab5.UI.ValueConverters"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="models:SetViewModel"
              x:Class="Lab5.UI.Pages.Sets"
@@ -12,10 +13,15 @@
                                         Command="{Binding UpdateGroupListCommand}" />
     </ContentPage.Behaviors>
 
+    <ContentPage.Resources>
+        <converters:CountToColorValueConverter x:Key="CountToColor" />
+    </ContentPage.Resources>
+
     <VerticalStackLayout>
-        <Picker HorizontalOptions="Center"
+        <Picker x:Name="SetPicker"
+                HorizontalOptions="Center"
                 VerticalOptions="Center"
-                Title="Select set"
+                Title="Выберите сет"
                 ItemsSource="{Binding Sets}"
                 ItemDisplayBinding="{Binding Name}"
                 FontSize="Medium"
@@ -31,8 +37,7 @@
         <CollectionView x:Name="SushiView"
                         ItemsSource="{Binding Sushi}"
                         HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        BackgroundColor="Grey">
+                        VerticalOptions="Center">
 
             <CollectionView.Header>
                 <DataTemplate x:DataType="entities:Set">
@@ -61,7 +66,9 @@
                               x:DataType="entities:Sushi">
                     <Grid Padding="10"
                           RowDefinitions="100, 30"
-                          HorizontalOptions="Fill">
+                          HorizontalOptions="Fill"
+                          BackgroundColor="{Binding Count, Converter={StaticResource CountToColor}}">
+
                         <Label Grid.Row="0"
                                Text="{Binding Name}"
                                TextColor="White"
@@ -71,12 +78,14 @@
                                FontAutoScalingEnabled="True">
                         </Label>
 
-                        <Label Grid.Row="1"
+                        <Label x:Name="Count"
+                               Grid.Row="1"
                                Text="{Binding Count, StringFormat='Количество: {0:D}'}"
                                FontSize="Small"
                                TextColor="White">
 
                         </Label>
+
                     </Grid>
                 </DataTemplate>
                 

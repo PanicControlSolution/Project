@@ -77,6 +77,8 @@ namespace Lab5.Persistence.Repository
             FakeSetRepository.set[1].Sushi.Add(_list.Last());
             _list.Add(new Sushi(2, "Ролл в миксе копченого лосося и морского окуня со сливочным сыром и тобико с сливочным сыром, салатом айсберг, картофелем пай", 8, new List<Set> { FakeSetRepository.set[1] }));
             FakeSetRepository.set[1].Sushi.Add(_list.Last());
+            _list.Add(new Sushi(3, "Ролл со сливочным сыром и тобико с сливочным сыром, салатом айсберг, картофелем пай", 16, new List<Set> { FakeSetRepository.set[1] }));
+            FakeSetRepository.set[1].Sushi.Add(_list.Last());
         }
 
         public async Task<IReadOnlyList<Sushi>> ListAsync(Expression<Func<Sushi, bool>> filter, CancellationToken
