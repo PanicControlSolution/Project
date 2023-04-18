@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Lab5.Application.Abstractions;
 using Lab5.Domain.Entities;
+using Lab5.UI.Pages;
 using System.Collections.ObjectModel;
 
 namespace Lab5.UI.ViewModels
@@ -28,6 +29,9 @@ namespace Lab5.UI.ViewModels
         [RelayCommand]
         async void UpdateMembersList() => await GetSushi();
 
+        [RelayCommand]
+        async void ShowDetails() => await GotoDetailsPage();
+
         public async Task GetSets()
         {
             var sets = await _setService.GetAllAsync();
@@ -52,6 +56,11 @@ namespace Lab5.UI.ViewModels
                     Sushi.Add(sushi);
                 }
             });
+        }
+
+        private async Task GotoDetailsPage()
+        {
+            await Shell.Current.GoToAsync(nameof(Details));
         }
     }
 }

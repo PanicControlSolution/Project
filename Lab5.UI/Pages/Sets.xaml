@@ -36,8 +36,8 @@
 
         <CollectionView x:Name="SushiView"
                         ItemsSource="{Binding Sushi}"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center">
+                        HorizontalOptions="FillAndExpand"
+                        HeightRequest="400">
 
             <CollectionView.Header>
                 <DataTemplate x:DataType="entities:Set">
@@ -64,35 +64,42 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:Name="SushiItem"
                               x:DataType="entities:Sushi">
-                    <Grid Padding="10"
-                          RowDefinitions="100, 30"
-                          HorizontalOptions="Fill"
-                          BackgroundColor="{Binding Count, Converter={StaticResource CountToColor}}">
+                    <Frame BackgroundColor="{Binding Count, Converter={StaticResource CountToColor}}">
 
-                        <Label Grid.Row="0"
-                               Text="{Binding Name}"
-                               TextColor="White"
-                               FontSize="Medium"
-                               HorizontalOptions="Fill"
-                               VerticalOptions="Fill"
-                               FontAutoScalingEnabled="True">
-                        </Label>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source=
+                                {RelativeSource AncestorType={x:Type models:SetViewModel}}, Path=ShowDetailsCommand}" />
+                        </Frame.GestureRecognizers>
 
-                        <Label x:Name="Count"
-                               Grid.Row="1"
-                               Text="{Binding Count, StringFormat='Количество: {0:D}'}"
-                               FontSize="Small"
-                               TextColor="White">
+                        <Grid Padding="10"
+                              RowDefinitions="100, 30"
+                              HorizontalOptions="Fill">
 
-                        </Label>
+                            <Label Grid.Row="0"
+                                   Text="{Binding Name}"
+                                   TextColor="White"
+                                   FontSize="Medium"
+                                   HorizontalOptions="Fill"
+                                   VerticalOptions="Fill"
+                                   FontAutoScalingEnabled="True">
+                            </Label>
 
-                    </Grid>
+                            <Label x:Name="Count"
+                                   Grid.Row="1"
+                                   Text="{Binding Count, StringFormat='Количество: {0:D}'}"
+                                   FontSize="Small"
+                                   TextColor="White">
+
+                            </Label>
+
+                        </Grid>
+                    </Frame>
                 </DataTemplate>
-                
+
             </CollectionView.ItemTemplate>
-            
+
         </CollectionView>
-        
+
     </VerticalStackLayout>
-    
+
 </ContentPage>
