@@ -30,7 +30,7 @@ namespace Lab5.UI.ViewModels
         async void UpdateMembersList() => await GetSushi();
 
         [RelayCommand]
-        async void ShowDetails() => await GotoDetailsPage();
+        async void ShowDetails(Sushi sushi) => await GotoDetailsPage(sushi);
 
         public async Task GetSets()
         {
@@ -58,9 +58,14 @@ namespace Lab5.UI.ViewModels
             });
         }
 
-        private async Task GotoDetailsPage()
+        private async Task GotoDetailsPage(Sushi sushi)
         {
-            await Shell.Current.GoToAsync(nameof(Details));
+            IDictionary<string, object> parameters = new Dictionary<string, object>()
+            {
+                {"Sushi", sushi}
+            };
+
+            await Shell.Current.GoToAsync($"Details", parameters);
         }
     }
 }

@@ -6,9 +6,20 @@
              x:DataType="models:DetailsViewModel"
              Title="Details">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Frame HorizontalOptions="Center"
+               VerticalOptions="FillAndExpand"
+               BackgroundColor="Pink">
+            <Grid RowDefinitions="50,50,50">
+                <Image Grid.Row="0"
+                       VerticalOptions="Center"
+                       Source="{Binding SelectedObject.Photo, Mode=TwoWay}" />
+                <Label Grid.Row="1"
+                       VerticalOptions="Center"
+                       Text="{Binding SelectedObject.Name, Mode=TwoWay}" />
+                <Label Grid.Row="2"
+                       VerticalOptions="Center"
+                       Text="{Binding SelectedObject.Count, Mode=TwoWay}" />
+            </Grid>
+        </Frame>
     </VerticalStackLayout>
 </ContentPage>

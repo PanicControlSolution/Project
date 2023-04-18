@@ -68,7 +68,8 @@
 
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source=
-                                {RelativeSource AncestorType={x:Type models:SetViewModel}}, Path=ShowDetailsCommand}" />
+                                {RelativeSource AncestorType={x:Type models:SetViewModel}}, Path=ShowDetailsCommand}"
+                                                  CommandParameter="{Binding}" />
                         </Frame.GestureRecognizers>
 
                         <Grid Padding="10"
