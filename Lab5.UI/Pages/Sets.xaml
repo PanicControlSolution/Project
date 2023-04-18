@@ -39,42 +39,27 @@
                         HorizontalOptions="Center"
                         VerticalOptions="Center">
 
-            <!--CollectionView.Header>
-                <DataTemplate
-                    x:DataType="entities:Set">
+            <CollectionView.Header>
+                <DataTemplate x:DataType="entities:Set">
                     <VerticalStackLayout>
-                    <Label
-                        Text="Информация о сете"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        TextColor="Yellow"/>
+                        <Label Text="Информация о сете"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               TextColor="Yellow" />
 
-                    <Label
-                        Text="Описание сета: "
-                        TextColor="Yellow"/>
-                    <Label
+                        <Label Text="Описание сета: "
+                               TextColor="Yellow" />
+                        <Label Text="{Binding Description}" />
 
-                                Text="{Binding Description}"/>
-
-                    <Label
-
-                                Text="Вес: "/>
-                    <Label
-
-                                Text="{Binding Weigth}"/>
-                    <Label
-
-                                Text="Цена: "/>
-                    <Label
-                                Text="{Binding Cost}"/>
-
+                        <Label Text="Вес: " />
+                        <Label Text="{Binding Weight}" />
+                        <Label Text="Цена: " />
+                        <Label Text="{Binding Cost}" />
 
                     </VerticalStackLayout>
                 </DataTemplate>
 
-
-
-            </CollectionView.Header-->
+            </CollectionView.Header>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:Name="SushiItem"
@@ -102,11 +87,12 @@
                         </Label>
 
                     </Grid>
-
                 </DataTemplate>
+                
             </CollectionView.ItemTemplate>
-
+            
         </CollectionView>
-
+        
     </VerticalStackLayout>
+    
 </ContentPage>

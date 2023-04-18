@@ -1,12 +1,12 @@
-﻿using Lab5.Domain.Entities;
+using Lab5.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lab5.Persistence.Data
 {
     public class AppDbContext : DbContext
     {
-        private DbSet<Set> _sets => Set<Set>();
-        private DbSet<Sushi> _sushi => Set<Sushi>();
+        public DbSet<Set> Sets { get; set; }
+        public DbSet<Sushi> Sushu { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)

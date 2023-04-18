@@ -46,7 +46,6 @@ namespace Lab5.UI.ViewModels
             var sushi = await _setService.GetAllBySetIdAsync(SelectedSet.Id);
             await MainThread.InvokeOnMainThreadAsync(() =>
             {
-
                 Sushi.Clear();
                 foreach (var sushi in sushi)
                 {
