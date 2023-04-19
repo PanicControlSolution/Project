@@ -7,9 +7,9 @@
 
     <ShellContent Title="Home"
                   ContentTemplate="{DataTemplate pages:MainPage}"
-                  Route="MainPage"/>
+                  Route="MainPage" />
     <ShellContent Title="Sushi sets"
                   ContentTemplate="{DataTemplate pages:Sets}"
-                  Route="Sets"/>
+                  Route="Sets" />
 
 </Shell>

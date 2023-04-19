@@ -127,11 +127,13 @@ namespace Lab5.UI
         private static void SetupViewModels(IServiceCollection services)
         {
             services.AddTransient<SetViewModel>();
+            services.AddTransient<DetailsViewModel>();
         }
 
         private static void SetupViews(IServiceCollection services)
         {
             services.AddTransient<Pages.Sets>();
+            services.AddTransient<Pages.Details>();
         }
     }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Lab5.UI.ViewModels"
+             x:Class="Lab5.UI.Pages.Details"
+             x:DataType="models:DetailsViewModel"
+             Title="Details">
+    <VerticalStackLayout>
+        <Frame HorizontalOptions="Center"
+               VerticalOptions="FillAndExpand"
+               BackgroundColor="Pink">
+            <Grid RowDefinitions="50,50,50">
+                <Image Grid.Row="0"
+                       VerticalOptions="Center"
+                       Source="{Binding SelectedObject.Photo, Mode=TwoWay}" />
+                <Label Grid.Row="1"
+                       VerticalOptions="Center"
+                       Text="{Binding SelectedObject.Name, Mode=TwoWay}" />
+                <Label Grid.Row="2"
+                       VerticalOptions="Center"
+                       Text="{Binding SelectedObject.Count, Mode=TwoWay}" />
+            </Grid>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>
