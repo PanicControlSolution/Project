@@ -92,8 +92,11 @@
                                    TextColor="White">
 
                             </Label>
+                            
                         </Grid>
+                        
                     </Frame>
+                    
                 </DataTemplate>
 
             </CollectionView.ItemTemplate>
