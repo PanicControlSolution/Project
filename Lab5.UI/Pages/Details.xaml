@@ -4,22 +4,36 @@
              xmlns:models="clr-namespace:Lab5.UI.ViewModels"
              x:Class="Lab5.UI.Pages.Details"
              x:DataType="models:DetailsViewModel"
-             Title="Details">
+             Title="Details"
+             BackgroundColor="White">
     <VerticalStackLayout>
-        <Frame HorizontalOptions="Center"
+        <Frame HorizontalOptions="FillAndExpand"
                VerticalOptions="FillAndExpand"
-               BackgroundColor="Pink">
-            <Grid RowDefinitions="50,50,50">
-                <Image Grid.Row="0"
+               Margin="100, 50, 100, 50"
+               HeightRequest="200"
+               BackgroundColor="LightCyan">
+            <Grid ColumnDefinitions="*, *, *">
+                <Image Grid.Column="0"
+                       HorizontalOptions="StartAndExpand"
                        VerticalOptions="Center"
                        Source="{Binding SelectedObject.Photo, Mode=TwoWay}" />
-                <Label Grid.Row="1"
+                <Label Grid.Column="1"
+                       HorizontalOptions="Center"
                        VerticalOptions="Center"
-                       Text="{Binding SelectedObject.Name, Mode=TwoWay}" />
-                <Label Grid.Row="2"
+                       Text="{Binding SelectedObject.Name, Mode=TwoWay}"
+                       FontSize="Large"
+                       TextColor="Black" />
+                <Label Grid.Column="2"
+                       HorizontalOptions="EndAndExpand"
                        VerticalOptions="Center"
-                       Text="{Binding SelectedObject.Count, Mode=TwoWay}" />
+                       Margin="0, 0, 50, 0"
+                       TextColor="Black"
+                       Text="{Binding SelectedObject.Count, Mode=TwoWay}"
+                       FontSize="Medium" />
             </Grid>
+
         </Frame>
+        
     </VerticalStackLayout>
+    
 </ContentPage>

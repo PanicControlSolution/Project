@@ -100,7 +100,7 @@ namespace Lab5.UI
                 unitOfWork._sushiRepository.ListAllAsync().Result[i].Sets.Add(sets[0]);*/
             for (int j = 10; j < 19; j++)
             {
-                await unitOfWork._sushiRepository.AddAsync(new Sushi(j, $"Суши {j}", 4, new List<Set> { sets[1] }));
+                await unitOfWork._sushiRepository.AddAsync(new Sushi(j, $"Суши {j}", 10, new List<Set> { sets[1] }));
             }
             
             try
