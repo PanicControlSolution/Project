@@ -63,6 +63,7 @@
                         <Label Text="{Binding Cost}" />
 
                     </VerticalStackLayout>
+                    
                 </DataTemplate>
 
             </CollectionView.Header>

@@ -22,15 +22,18 @@
                        VerticalOptions="Center"
                        Text="{Binding SelectedObject.Name, Mode=TwoWay}"
                        FontSize="Large"
-                       TextColor="Black"/>
+                       TextColor="Black" />
                 <Label Grid.Column="2"
                        HorizontalOptions="EndAndExpand"
                        VerticalOptions="Center"
                        Margin="0, 0, 50, 0"
                        TextColor="Black"
-                       Text="{Binding SelectedObject.Count, Mode=TwoWay}" 
-                       FontSize="Medium"/>
+                       Text="{Binding SelectedObject.Count, Mode=TwoWay}"
+                       FontSize="Medium" />
             </Grid>
+
         </Frame>
+        
     </VerticalStackLayout>
+    
 </ContentPage>
