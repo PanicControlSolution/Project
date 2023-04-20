@@ -7,7 +7,8 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="models:SetViewModel"
              x:Class="Lab5.UI.Pages.Sets"
-             Title="Sets">
+             Title="Sets"
+             BackgroundColor="White">
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior EventName="Loaded"
                                         Command="{Binding UpdateGroupListCommand}" />
@@ -19,9 +20,12 @@
 
     <VerticalStackLayout>
         <Picker x:Name="SetPicker"
-                HorizontalOptions="Center"
+                HorizontalOptions="CenterAndExpand"
+                Margin="100, 10, 100, 10"
                 VerticalOptions="Center"
                 Title="Выберите сет"
+                BackgroundColor="LightGray"
+                TextColor="Black"
                 ItemsSource="{Binding Sets}"
                 ItemDisplayBinding="{Binding Name}"
                 FontSize="Medium"
@@ -37,7 +41,9 @@
         <CollectionView x:Name="SushiView"
                         ItemsSource="{Binding Sushi}"
                         HorizontalOptions="FillAndExpand"
-                        HeightRequest="400">
+                        Margin ="100, 0, 100, 0"
+                        HeightRequest="600"
+                        BackgroundColor="White">
 
             <CollectionView.Header>
                 <DataTemplate x:DataType="entities:Set">
@@ -64,7 +70,8 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:Name="SushiItem"
                               x:DataType="entities:Sushi">
-                    <Frame BackgroundColor="{Binding Count, Converter={StaticResource CountToColor}}">
+                    <Frame BackgroundColor="{Binding Count, Converter={StaticResource CountToColor}}"
+                           Margin="100, 5, 100, 5">
 
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source=
@@ -73,12 +80,12 @@
                         </Frame.GestureRecognizers>
 
                         <Grid Padding="10"
-                              RowDefinitions="100, 30"
+                              RowDefinitions="40, 20"
                               HorizontalOptions="Fill">
 
                             <Label Grid.Row="0"
                                    Text="{Binding Name}"
-                                   TextColor="White"
+                                   TextColor="Black"
                                    FontSize="Medium"
                                    HorizontalOptions="Fill"
                                    VerticalOptions="Fill"
@@ -89,7 +96,7 @@
                                    Grid.Row="1"
                                    Text="{Binding Count, StringFormat='Количество: {0:D}'}"
                                    FontSize="Small"
-                                   TextColor="White">
+                                   TextColor="Black">
 
                             </Label>
                             
