@@ -3,13 +3,73 @@
        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:Lab5.UI"
-       xmlns:pages="clr-namespace:Lab5.UI.Pages">
+       xmlns:pages="clr-namespace:Lab5.UI.Pages"
+       BackgroundColor="White"
+       FlyoutBackgroundColor="White"
+       FlyoutWidth="200">
 
-    <ShellContent Title="Home"
-                  ContentTemplate="{DataTemplate pages:MainPage}"
-                  Route="MainPage" />
-    <ShellContent Title="Sushi sets"
-                  ContentTemplate="{DataTemplate pages:Sets}"
-                  Route="Sets" />
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style Class="FlyoutItemLabelStyle"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="Magenta"></Setter>
+            </Style>
+            <Style Class="FlyoutItemLayoutStyle"
+                   TargetType="Layout"
+                   ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="Transparent" />
+                                    <Setter TargetName="FlyoutItemLabel"
+                                            Property="Label.TextColor"
+                                            Value="Blue" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="Transparent" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style Class="MenuItemLayoutStyle"
+                   TargetType="Layout"
+                   ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="FlyoutItemLabel"
+                                            Property="Label.TextColor"
+                                            Value="Green" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <FlyoutItem Title="Home"
+                Icon="home.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:MainPage}"
+                      Route="MainPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Sushi"
+                Icon="sushi.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:Sets}"
+                      Route="Sets" />
+    </FlyoutItem>
 
 </Shell>
