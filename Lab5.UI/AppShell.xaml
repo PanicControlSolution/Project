@@ -6,7 +6,8 @@
        xmlns:pages="clr-namespace:Lab5.UI.Pages"
        BackgroundColor="White"
        FlyoutBackgroundColor="White"
-       FlyoutWidth="200">
+       FlyoutWidth="200"
+       Shell.NavBarIsVisible="False">
 
     <Shell.Resources>
         <ResourceDictionary>
