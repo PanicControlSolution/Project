@@ -25,7 +25,6 @@ namespace Lab5.Persistence.Repository
             {
                 throw new ArgumentNullException(nameof(entity), "Entity cannot be null");
             }
-
             _entities.Remove(entity);
         }
 
@@ -37,12 +36,10 @@ namespace Lab5.Persistence.Repository
         public async Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default, params System.Linq.Expressions.Expression<Func<T, object>>[]? includesProperties)
         {
             var query = _entities.AsQueryable();
-
             if (includesProperties != null)
             {
                 query = includesProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
             }
-
             return await query.FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
         }
 
@@ -61,23 +58,6 @@ namespace Lab5.Persistence.Repository
             }
 
             return await query.ToListAsync(cancellationToken);
-
-            /////////Example from technical  task is below:
-
-            /*IQueryable<T>? query = _entities.AsQueryable();
-            if (includesProperties.Any())
-            {
-                foreach (Expression<Func<T, object>>? included in
-                includesProperties)
-                {
-                    query = query.Include(included);
-                }
-            }
-            if (filter != null)
-            {
-                query = query.Where(filter);
-            }
-            return await query.ToListAsync();*/
         }
 
         public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)

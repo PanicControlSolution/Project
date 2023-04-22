@@ -5,8 +5,8 @@ namespace Lab5.Persistence.Data
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Set> Sets { get; set; }
-        public DbSet<Sushi> Sushi { get; set; }
+        public DbSet<Set> Sets => Set<Set>();
+        public DbSet<Sushi> Sushi => Set<Sushi>();
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
