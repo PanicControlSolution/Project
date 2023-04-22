@@ -9,6 +9,7 @@
              x:Class="Lab5.UI.Pages.Sets"
              Title="Sets"
              BackgroundColor="White">
+
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior EventName="Loaded"
                                         Command="{Binding UpdateGroupListCommand}" />
@@ -18,18 +19,24 @@
         <converters:CountToColorValueConverter x:Key="CountToColor" />
     </ContentPage.Resources>
 
-    <VerticalStackLayout>
+    <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
         <Picker x:Name="SetPicker"
                 HorizontalOptions="CenterAndExpand"
                 Margin="100, 10, 100, 10"
-                VerticalOptions="Center"
                 Title="Выберите сет"
                 BackgroundColor="LightGray"
                 TextColor="Black"
                 ItemsSource="{Binding Sets}"
                 ItemDisplayBinding="{Binding Name}"
                 FontSize="Medium"
-                SelectedItem="{Binding SelectedSet}">
+                SelectedItem="{Binding SelectedSet}"
+                Grid.Row="0">
 
             <Picker.Behaviors>
                 <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
@@ -41,32 +48,9 @@
         <CollectionView x:Name="SushiView"
                         ItemsSource="{Binding Sushi}"
                         HorizontalOptions="FillAndExpand"
-                        Margin ="100, 0, 100, 0"
-                        HeightRequest="600"
-                        BackgroundColor="White">
-
-            <CollectionView.Header>
-                <DataTemplate x:DataType="entities:Set">
-                    <VerticalStackLayout>
-                        <Label Text="Информация о сете"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"
-                               TextColor="Yellow" />
-
-                        <Label Text="Описание сета: "
-                               TextColor="Yellow" />
-                        <Label Text="{Binding Description}" />
-
-                        <Label Text="Вес: " />
-                        <Label Text="{Binding Weight}" />
-                        <Label Text="Цена: " />
-                        <Label Text="{Binding Cost}" />
-
-                    </VerticalStackLayout>
-                    
-                </DataTemplate>
-
-            </CollectionView.Header>
+                        Margin="100, 0, 100, 0"
+                        BackgroundColor="White"
+                        Grid.Row="1">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:Name="SushiItem"
@@ -100,17 +84,17 @@
                                    TextColor="Black">
 
                             </Label>
-                            
+
                         </Grid>
-                        
+
                     </Frame>
-                    
+
                 </DataTemplate>
 
             </CollectionView.ItemTemplate>
 
         </CollectionView>
 
-    </VerticalStackLayout>
+    </Grid>
 
 </ContentPage>

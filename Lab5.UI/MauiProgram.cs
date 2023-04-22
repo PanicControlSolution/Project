@@ -49,15 +49,17 @@ namespace Lab5.UI
 
         private static void AddDbContext(MauiAppBuilder builder)
         {
-            var connStr = builder.Configuration
+            var connectionString = builder.Configuration
             .GetConnectionString("SqliteConnection");
             string dataDirectory = string.Empty;
 #if ANDROID
-            dataDirectory = FileSystem.AppDataDirectory + "/";
+            dataDirectory = FileSystem.AppDataDirectory + Path.DirectorySeparatorChar;
+#else
+            dataDirectory = AppDomain.CurrentDomain.BaseDirectory + Path.DirectorySeparatorChar;
 #endif
-            connStr = string.Format(connStr, dataDirectory);
+            connectionString = string.Format(connectionString, dataDirectory);
             var options = new DbContextOptionsBuilder<AppDbContext>()
-            .UseSqlite(connStr)
+            .UseSqlite(connectionString)
             .EnableSensitiveDataLogging()
             .Options;
             builder.Services.AddSingleton((s) => new AppDbContext(options));
@@ -73,14 +75,15 @@ namespace Lab5.UI
             await unitOfWork.RemoveDatbaseAsync();
             await unitOfWork.CreateDatabaseAsync();
             // Add sets
-            IList<Set> sets = new List<Set>()
-        {
-            new Set(1, 129.99, "Сяке сет", "Без огурцов", 1200),
-            new Set(2, 139.99, "Кунсей сет", "Много огурцов", 1400)
-        };
+            IList<Set> sets = new List<Set>() {
+                new Set(129.99, "Сяке сет", "Без огурцов", 1200),
+                new Set(139.99, "Кунсей сет", "Много огурцов", 1400)
+            };
 
             foreach (var set in sets)
+            {
                 await unitOfWork._setRepository.AddAsync(set);
+            }
             try
             {
                 await unitOfWork.SaveAllAsync();
@@ -93,16 +96,13 @@ namespace Lab5.UI
             {
                 Console.WriteLine(ex.ToString());
             }
-            //Add sushi
-            for (int j = 1; j < 10; j++)
-                await unitOfWork._sushiRepository.AddAsync(new Sushi(j, $"Суши {j}", 4, new List<Set> { sets[0] }));
-            /*for (int i = 1; i < 10; i++)
-                unitOfWork._sushiRepository.ListAllAsync().Result[i].Sets.Add(sets[0]);*/
-            for (int j = 10; j < 19; j++)
+            foreach (var set in sets)
             {
-                await unitOfWork._sushiRepository.AddAsync(new Sushi(j, $"Суши {j}", 10, new List<Set> { sets[1] }));
+                for (int j = 1; j < new Random().Next(4, 10); j++)
+                {
+                    await unitOfWork._sushiRepository.AddAsync(new Sushi($"Суши {j}", new Random().Next(4, 12), new List<Set> { set }));
+                }
             }
-            
             try
             {
                 await unitOfWork.SaveAllAsync();

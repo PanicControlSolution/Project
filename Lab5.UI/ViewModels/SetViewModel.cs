@@ -2,7 +2,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Lab5.Application.Abstractions;
 using Lab5.Domain.Entities;
-using Lab5.UI.Pages;
 using System.Collections.ObjectModel;
 
 namespace Lab5.UI.ViewModels
@@ -10,12 +9,10 @@ namespace Lab5.UI.ViewModels
     public partial class SetViewModel : ObservableObject
     {
         private readonly ISetService _setService;
-        private readonly ISushiService _sushiService;
 
-        public SetViewModel(ISetService setService, ISushiService sushiService)
+        public SetViewModel(ISetService setService)
         {
             _setService = setService;
-            _sushiService = sushiService;
         }
 
         public ObservableCollection<Set> Sets { get; set; } = new();
