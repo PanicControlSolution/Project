@@ -19,7 +19,9 @@
         <converters:CountToColorValueConverter x:Key="CountToColor" />
     </ContentPage.Resources>
 
-    <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+    <Grid HorizontalOptions="Fill"
+          VerticalOptions="Fill"
+          ColumnDefinitions="*, *">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="0.25*" />
@@ -27,7 +29,7 @@
         </Grid.RowDefinitions>
 
         <Picker x:Name="SetPicker"
-                HorizontalOptions="CenterAndExpand"
+                HorizontalOptions="Start"
                 Margin="100, 10, 100, 10"
                 Title="Выберите сет"
                 BackgroundColor="LightGray"
@@ -36,7 +38,8 @@
                 ItemDisplayBinding="{Binding Name}"
                 FontSize="Medium"
                 SelectedItem="{Binding SelectedSet}"
-                Grid.Row="0">
+                Grid.Row="0"
+                Grid.Column="0">
 
             <Picker.Behaviors>
                 <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
@@ -45,12 +48,23 @@
 
         </Picker>
 
+        <Button Text="--Добавить новую сушину--"
+                FontSize="Medium"
+                BackgroundColor="LightGray"
+                TextColor="Black"
+                Command="{Binding AddSushiCommand}"
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="100, 50, 100, 50">
+        </Button>
+
         <CollectionView x:Name="SushiView"
                         ItemsSource="{Binding Sushi}"
                         HorizontalOptions="FillAndExpand"
                         Margin="100, 0, 100, 0"
                         BackgroundColor="White"
-                        Grid.Row="1">
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:Name="SushiItem"

@@ -29,6 +29,9 @@ namespace Lab5.UI.ViewModels
         [RelayCommand]
         async void ShowDetails(Sushi sushi) => await GotoDetailsPage(sushi);
 
+        [RelayCommand]
+        async void AddSushi() => await GoToAddSushi();
+
         public async Task GetSets()
         {
             var sets = await _setService.GetAllAsync();
@@ -63,6 +66,11 @@ namespace Lab5.UI.ViewModels
             };
 
             await Shell.Current.GoToAsync($"Details", parameters);
+        }
+
+        private async Task GoToAddSushi()
+        {
+            await Shell.Current.GoToAsync($"AddSushiPage");
         }
     }
 }

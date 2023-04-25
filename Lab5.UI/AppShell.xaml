@@ -72,5 +72,5 @@
         <ShellContent ContentTemplate="{DataTemplate pages:Sets}"
                       Route="Sets" />
     </FlyoutItem>
-
+    
 </Shell>

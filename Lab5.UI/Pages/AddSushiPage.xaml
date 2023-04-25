@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lab5.UI.Pages.AddSushiPage"
+             Title="AddSushiPage"
+             xmlns:models="clr-namespace:Lab5.UI.ViewModels"
+             xmlns:entities="clr-namespace:Lab5.Domain.Entities;assembly=Lab5.Domain"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="models:SetViewModel"
+             BackgroundColor="White">
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Loaded"
+                                        Command="{Binding UpdateGroupListCommand}" />
+    </ContentPage.Behaviors>
+
+    <Grid RowDefinitions="2*, 2*, *, *, *"
+          ColumnDefinitions="*, 2*">
+
+        <Picker x:Name="SetPicker"
+                HorizontalOptions="CenterAndExpand"
+                Margin="100, 10, 100, 10"
+                Title="Выберите сет"
+                BackgroundColor="LightGray"
+                TextColor="Black"
+                ItemsSource="{Binding Sets}"
+                ItemDisplayBinding="{Binding Name}"
+                FontSize="Medium"
+                SelectedItem="{Binding SelectedSet}"
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Grid.Column="0">
+        </Picker>
+
+        <Label Grid.Row="1"
+               Grid.Column="0"
+               Text="Выберите фотографию:"
+               FontSize="Large"
+               BackgroundColor="LightGray"
+               TextColor="Black">
+        </Label>
+
+        <Label Grid.Row="2"
+               Grid.Column="0"
+               Text="Введите название новой сушины:"
+               FontSize="Large"
+               BackgroundColor="LightGray"
+               TextColor="Black">
+        </Label>
+
+        <Entry x:Name="entry"
+               Grid.Row="2"
+               Grid.Column="1"
+               HorizontalOptions="FillAndExpand"
+               Placeholder="Как зовут вашу сушину?" />
+
+        <Label Grid.Row="3"
+               Grid.Column="0"
+               Text="Введите количество сушин:"
+               FontSize="Large"
+               BackgroundColor="LightGray"
+               TextColor="Black">
+        </Label>
+
+        <Entry x:Name="entry2"
+               Grid.Row="3"
+               Grid.Column="1"
+               HorizontalOptions="FillAndExpand"
+               Placeholder="Чем больше, тем лучше?" />
+
+        <Button Text="Добавить новую сушину в сет"
+                FontSize="Medium"
+                HorizontalOptions="CenterAndExpand"
+                Grid.Row="4"
+                Grid.ColumnSpan="2">
+        </Button>
+    </Grid>
+
+</ContentPage>

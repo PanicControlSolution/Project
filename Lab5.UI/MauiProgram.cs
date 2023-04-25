@@ -134,6 +134,7 @@ namespace Lab5.UI
         {
             services.AddTransient<Pages.Sets>();
             services.AddTransient<Pages.Details>();
+            services.AddTransient<Pages.AddSushiPage>();
         }
     }
 }
