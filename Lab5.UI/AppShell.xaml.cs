@@ -1,10 +1,13 @@
 ﻿using Lab5.UI.Pages;
 
-namespace Lab5.UI {
-    public partial class AppShell : Shell {
-        public AppShell() {
-            Routing.RegisterRoute(nameof(Details),
-                typeof(Details));
+namespace Lab5.UI
+{
+    public partial class AppShell : Shell
+    {
+        public AppShell()
+        {
+            Routing.RegisterRoute(nameof(Details), typeof(Details));
+            Routing.RegisterRoute(nameof(AddSushiPage), typeof(AddSushiPage));
             InitializeComponent();
         }
     }
