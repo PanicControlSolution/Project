@@ -6,23 +6,29 @@
              x:DataType="models:DetailsViewModel"
              Title="Details"
              BackgroundColor="White">
+
     <VerticalStackLayout>
+
         <Frame HorizontalOptions="FillAndExpand"
                VerticalOptions="FillAndExpand"
                Margin="100, 50, 100, 50"
                HeightRequest="200"
                BackgroundColor="LightCyan">
+
             <Grid ColumnDefinitions="*, *, *">
+
                 <Image Grid.Column="0"
                        HorizontalOptions="StartAndExpand"
                        VerticalOptions="Center"
                        Source="{Binding SelectedObject.Photo, Mode=TwoWay}" />
+
                 <Label Grid.Column="1"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        Text="{Binding SelectedObject.Name, Mode=TwoWay}"
                        FontSize="Large"
                        TextColor="Black" />
+
                 <Label Grid.Column="2"
                        HorizontalOptions="EndAndExpand"
                        VerticalOptions="Center"
@@ -30,10 +36,11 @@
                        TextColor="Black"
                        Text="{Binding SelectedObject.Count, Mode=TwoWay}"
                        FontSize="Medium" />
+
             </Grid>
 
         </Frame>
-        
+
     </VerticalStackLayout>
-    
+
 </ContentPage>

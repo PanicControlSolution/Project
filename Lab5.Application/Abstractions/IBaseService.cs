@@ -12,6 +12,6 @@ namespace Lab5.Application.Abstractions
 
         Task UpdateAsync(T item);
 
-        Task DeleteAsync(T item);
+        void DeleteAsync(T item);
     }
 }

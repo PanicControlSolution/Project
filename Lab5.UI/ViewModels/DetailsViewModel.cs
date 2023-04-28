@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Lab5.Domain.Entities;
+﻿using Lab5.Domain.Entities;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -9,9 +8,9 @@ namespace Lab5.UI.ViewModels
     {
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
         Sushi selectedObject;
-        
+
         public Sushi SelectedObject
         {
             get => selectedObject;

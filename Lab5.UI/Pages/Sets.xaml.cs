@@ -12,5 +12,4 @@ public partial class Sets : ContentPage
         _viewModel = setViewModel;
         BindingContext = _viewModel;
     }
-
 }

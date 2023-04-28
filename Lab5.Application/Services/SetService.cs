@@ -6,7 +6,7 @@ namespace Lab5.Application.Services
 {
     public class SetService : ISetService
     {
-        private IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         public SetService(IUnitOfWork unit)
         {
@@ -18,9 +18,9 @@ namespace Lab5.Application.Services
             return _unitOfWork._setRepository.AddAsync(item);
         }
 
-        public Task DeleteAsync(Set item)
+        public void DeleteAsync(Set item)
         {
-            return _unitOfWork._setRepository.DeleteAsync(item);
+            _unitOfWork._setRepository.DeleteAsync(item);
         }
 
         public Task<IReadOnlyList<Set>> GetAllAsync()
@@ -31,7 +31,7 @@ namespace Lab5.Application.Services
         public async Task<IReadOnlyList<Sushi>> GetAllBySetIdAsync(int setId)
         {
             var set = await _unitOfWork._setRepository.GetByIdAsync(setId, default, s => s.Sushi);
-            
+
             return (IReadOnlyList<Sushi>)set.Sushi;
         }
 

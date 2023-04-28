@@ -1,14 +1,14 @@
-﻿using Lab5.Domain.Entities;
-using System.Globalization;
-using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
+﻿using System.Globalization;
 
 namespace Lab5.UI.ValueConverters
 {
     public class CountToColorValueConverter : IValueConverter
     {
+
         static public Color Accept { get; set; } = Colors.LightCyan;
+
         static public Color Denied { get; set; } = Colors.LightPink;
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var count = (int)value;

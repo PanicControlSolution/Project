@@ -14,12 +14,13 @@ namespace Lab5.Persistence.Repository
             _dbContext = dbContext;
             _entities = dbContext.Set<T>();
         }
+
         public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
         {
             await _entities.AddAsync(entity, cancellationToken);
         }
 
-        public async Task DeleteAsync(T entity, CancellationToken cancellationToken = default)
+        public void DeleteAsync(T entity, CancellationToken cancellationToken = default)
         {
             if (entity == null)
             {
@@ -28,9 +29,9 @@ namespace Lab5.Persistence.Repository
             _entities.Remove(entity);
         }
 
-        public async Task<T> FirstOrDefaultAsync(System.Linq.Expressions.Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
+        public async Task<T> FirstAsync(System.Linq.Expressions.Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
         {
-            return await _entities.FirstOrDefaultAsync(filter, cancellationToken);
+            return await _entities.FirstAsync(filter, cancellationToken);
         }
 
         public async Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default, params System.Linq.Expressions.Expression<Func<T, object>>[]? includesProperties)
@@ -40,7 +41,7 @@ namespace Lab5.Persistence.Repository
             {
                 query = includesProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
             }
-            return await query.FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
+            return await query.FirstAsync(e => e.Id == id, cancellationToken);
         }
 
         public async Task<IReadOnlyList<T>> ListAllAsync(CancellationToken cancellationToken = default)
@@ -51,18 +52,17 @@ namespace Lab5.Persistence.Repository
         public async Task<IReadOnlyList<T>> ListAsync(System.Linq.Expressions.Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default, params System.Linq.Expressions.Expression<Func<T, object>>[]? includesProperties)
         {
             var query = _entities.Where(filter);
-
             if (includesProperties != null)
             {
                 query = includesProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
             }
-
             return await query.ToListAsync(cancellationToken);
         }
 
         public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            var old = await GetByIdAsync(entity.Id);
+            _dbContext.Entry(old).CurrentValues.SetValues(entity);
         }
     }
 }

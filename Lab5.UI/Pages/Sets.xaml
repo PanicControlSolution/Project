@@ -11,12 +11,16 @@
              BackgroundColor="White">
 
     <ContentPage.Behaviors>
+
         <toolkit:EventToCommandBehavior EventName="Loaded"
                                         Command="{Binding UpdateGroupListCommand}" />
+
     </ContentPage.Behaviors>
 
     <ContentPage.Resources>
+
         <converters:CountToColorValueConverter x:Key="CountToColor" />
+
     </ContentPage.Resources>
 
     <Grid HorizontalOptions="Fill"
@@ -24,8 +28,10 @@
           ColumnDefinitions="*, *">
 
         <Grid.RowDefinitions>
+
             <RowDefinition Height="0.25*" />
             <RowDefinition />
+
         </Grid.RowDefinitions>
 
         <Picker x:Name="SetPicker"
@@ -42,8 +48,10 @@
                 Grid.Column="0">
 
             <Picker.Behaviors>
+
                 <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
                                                 Command="{Binding UpdateMembersListCommand}" />
+
             </Picker.Behaviors>
 
         </Picker>
@@ -55,8 +63,7 @@
                 Command="{Binding AddSushiCommand}"
                 Grid.Row="0"
                 Grid.Column="1"
-                Margin="100, 50, 100, 50">
-        </Button>
+                Margin="100, 50, 100, 50" />
 
         <CollectionView x:Name="SushiView"
                         ItemsSource="{Binding Sushi}"
@@ -67,15 +74,18 @@
                         Grid.ColumnSpan="2">
 
             <CollectionView.ItemTemplate>
+
                 <DataTemplate x:Name="SushiItem"
                               x:DataType="entities:Sushi">
+
                     <Frame BackgroundColor="{Binding Count, Converter={StaticResource CountToColor}}"
                            Margin="100, 5, 100, 5">
 
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source=
-                                {RelativeSource AncestorType={x:Type models:SetViewModel}}, Path=ShowDetailsCommand}"
+
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type models:SetViewModel}}, Path=ShowDetailsCommand}"
                                                   CommandParameter="{Binding}" />
+
                         </Frame.GestureRecognizers>
 
                         <Grid Padding="10"

@@ -23,6 +23,7 @@ namespace Lab5.UI.ViewModels
 
         [RelayCommand]
         async void UpdateGroupList() => await GetSets();
+
         [RelayCommand]
         async void UpdateMembersList() => await GetSushi();
 

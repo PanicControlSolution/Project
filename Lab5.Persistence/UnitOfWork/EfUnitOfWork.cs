@@ -8,11 +8,13 @@ namespace Lab5.Persistence.UnitOfWork
     public class EfUnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _context;
+
         private readonly IRepository<Set> _setRepository;
+
         private readonly IRepository<Sushi> _sushiRepository;
 
-        //implementation of interface
         IRepository<Set> IUnitOfWork._setRepository => _setRepository;
+
         IRepository<Sushi> IUnitOfWork._sushiRepository => _sushiRepository;
 
         public EfUnitOfWork(AppDbContext context)

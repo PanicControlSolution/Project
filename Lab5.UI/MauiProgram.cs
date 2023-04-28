@@ -46,7 +46,6 @@ namespace Lab5.UI
             return builder.Build();
         }
 
-
         private static void AddDbContext(MauiAppBuilder builder)
         {
             var connectionString = builder.Configuration
@@ -116,14 +115,13 @@ namespace Lab5.UI
                 Console.WriteLine(ex.ToString());
             }
         }
+
         private static void SetupServices(IServiceCollection services)
         {
-            //services.AddSingleton(new AppDbContext(new Microsoft.EntityFrameworkCore.DbContextOptions<AppDbContext>()));
-            //services.AddSingleton<IUnitOfWork, FakeUnitOfWork>();
-
             services.AddSingleton<ISetService, SetService>();
             services.AddSingleton<ISushiService, SushiService>();
         }
+
         private static void SetupViewModels(IServiceCollection services)
         {
             services.AddTransient<SetViewModel>();

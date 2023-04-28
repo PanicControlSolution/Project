@@ -8,6 +8,7 @@ namespace Lab5.Persistence.Repository
     public class FakeSetRepository : IRepository<Set>
     {
         private readonly List<Set> _sets;
+
         public readonly static List<Set> set = new()
         {
             new Set(45.99, "Сяке сет", "Много огурцов", 450),
@@ -29,12 +30,12 @@ namespace Lab5.Persistence.Repository
             throw new NotImplementedException();
         }
 
-        Task IRepository<Set>.DeleteAsync(Set entity, CancellationToken cancellationToken)
+        void IRepository<Set>.DeleteAsync(Set entity, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        Task<Set> IRepository<Set>.FirstOrDefaultAsync(Expression<Func<Set, bool>> filter, CancellationToken cancellationToken)
+        Task<Set> IRepository<Set>.FirstAsync(Expression<Func<Set, bool>> filter, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -81,12 +82,10 @@ namespace Lab5.Persistence.Repository
             FakeSetRepository.set[1].Sushi.Add(_list.Last());
         }
 
-        public async Task<IReadOnlyList<Sushi>> ListAsync(Expression<Func<Sushi, bool>> filter, CancellationToken
-        cancellationToken = default, params Expression<Func<Sushi, object>>[]?
-        includesProperties)
+        public async Task<IReadOnlyList<Sushi>> ListAsync(Expression<Func<Sushi, bool>> filter, CancellationToken cancellationToken = default, params Expression<Func<Sushi, object>>[]? includesProperties)
         {
             var data = _list.AsQueryable();
-            return data.Where(filter).ToList();
+            return await data.Where(filter).ToListAsync();
         }
 
         Task IRepository<Sushi>.AddAsync(Sushi entity, CancellationToken cancellationToken)
@@ -94,12 +93,12 @@ namespace Lab5.Persistence.Repository
             throw new NotImplementedException();
         }
 
-        Task IRepository<Sushi>.DeleteAsync(Sushi entity, CancellationToken cancellationToken)
+        void IRepository<Sushi>.DeleteAsync(Sushi entity, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        Task<Sushi> IRepository<Sushi>.FirstOrDefaultAsync(Expression<Func<Sushi, bool>> filter, CancellationToken cancellationToken)
+        Task<Sushi> IRepository<Sushi>.FirstAsync(Expression<Func<Sushi, bool>> filter, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

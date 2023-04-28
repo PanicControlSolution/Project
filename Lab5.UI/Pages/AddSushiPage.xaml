@@ -10,8 +10,10 @@
              BackgroundColor="White">
 
     <ContentPage.Behaviors>
+
         <toolkit:EventToCommandBehavior EventName="Loaded"
                                         Command="{Binding UpdateGroupListCommand}" />
+
     </ContentPage.Behaviors>
 
     <Grid RowDefinitions="2*, 2*, *, *, *"
@@ -74,6 +76,7 @@
                 Grid.Row="4"
                 Grid.ColumnSpan="2">
         </Button>
+
     </Grid>
 
 </ContentPage>

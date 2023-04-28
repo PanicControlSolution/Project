@@ -6,7 +6,8 @@ namespace Lab5.Application.Services
 {
     public class SushiService : ISushiService
     {
-        private IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
+
         public SushiService(IUnitOfWork unit)
         {
             _unitOfWork = unit;
@@ -16,9 +17,9 @@ namespace Lab5.Application.Services
             return _unitOfWork._sushiRepository.AddAsync(item);
         }
 
-        public Task DeleteAsync(Sushi item)
+        public void DeleteAsync(Sushi item)
         {
-            return _unitOfWork._sushiRepository.DeleteAsync(item);
+            _unitOfWork._sushiRepository.DeleteAsync(item);
         }
 
         public Task<IReadOnlyList<Sushi>> GetAllAsync()

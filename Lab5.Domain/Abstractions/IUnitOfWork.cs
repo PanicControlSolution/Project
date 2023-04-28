@@ -4,7 +4,6 @@ namespace Lab5.Domain.Abstractions
 {
     public interface IUnitOfWork
     {
-
         IRepository<Set> _setRepository { get; }
 
         IRepository<Sushi> _sushiRepository { get; }

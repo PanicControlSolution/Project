@@ -6,8 +6,7 @@ namespace Lab5.Domain.Abstractions
     public interface IRepository<T> where T : Entity
     {
 
-        Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default,
-        params Expression<Func<T, object>>[]? includesProperties);
+        Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default, params Expression<Func<T, object>>[]? includesProperties);
 
         Task<IReadOnlyList<T>> ListAllAsync(CancellationToken cancellationToken = default);
 
@@ -17,9 +16,9 @@ namespace Lab5.Domain.Abstractions
 
         Task UpdateAsync(T entity, CancellationToken cancellationToken = default);
 
-        Task DeleteAsync(T entity, CancellationToken cancellationToken = default);
+        void DeleteAsync(T entity, CancellationToken cancellationToken = default);
 
-        Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default);
+        Task<T> FirstAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default);
 
     }
 }
