@@ -20,8 +20,8 @@ namespace Lab5.Persistence.UnitOfWork
         public EfUnitOfWork(AppDbContext context)
         {
             _context = context;
-            _setRepository = new EfRepository<Set>(context);
-            _sushiRepository = new EfRepository<Sushi>(context);
+            _setRepository = new EfSetRepository(context);
+            _sushiRepository = new EfSushiRepository(context);
         }
 
         public async Task CreateDatabaseAsync()

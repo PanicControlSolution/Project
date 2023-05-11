@@ -1,26 +1,27 @@
 ﻿using Lab5.Domain.Abstractions;
 using Lab5.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Lab5.Persistence.Repository
 {
-    internal class EfRepository<T> : IRepository<T> where T : Entity
+    internal class EfSushiRepository : IRepository<Sushi>
     {
         private readonly DbContext _dbContext;
-        private readonly DbSet<T> _entities;
+        private readonly DbSet<Sushi> _entities;
 
-        public EfRepository(DbContext dbContext)
+        public EfSushiRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
-            _entities = dbContext.Set<T>();
+            _entities = dbContext.Set<Sushi>();
         }
 
-        public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
+        public async Task AddAsync(Sushi entity, CancellationToken cancellationToken = default)
         {
             await _entities.AddAsync(entity, cancellationToken);
         }
 
-        public void DeleteAsync(T entity, CancellationToken cancellationToken = default)
+        public void DeleteAsync(Sushi entity, CancellationToken cancellationToken = default)
         {
             if (entity == null)
             {
@@ -29,12 +30,12 @@ namespace Lab5.Persistence.Repository
             _entities.Remove(entity);
         }
 
-        public async Task<T> FirstAsync(System.Linq.Expressions.Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
+        public async Task<Sushi> FirstAsync(Expression<Func<Sushi, bool>> filter, CancellationToken cancellationToken = default)
         {
             return await _entities.FirstAsync(filter, cancellationToken);
         }
 
-        public async Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default, params System.Linq.Expressions.Expression<Func<T, object>>[]? includesProperties)
+        public async Task<Sushi> GetByIdAsync(int id, CancellationToken cancellationToken = default, params Expression<Func<Sushi, object>>[]? includesProperties)
         {
             var query = _entities.AsQueryable();
             if (includesProperties != null)
@@ -44,12 +45,12 @@ namespace Lab5.Persistence.Repository
             return await query.FirstAsync(e => e.Id == id, cancellationToken);
         }
 
-        public async Task<IReadOnlyList<T>> ListAllAsync(CancellationToken cancellationToken = default)
+        public async Task<IReadOnlyList<Sushi>> ListAllAsync(CancellationToken cancellationToken = default)
         {
             return await _entities.ToListAsync(cancellationToken);
         }
 
-        public async Task<IReadOnlyList<T>> ListAsync(System.Linq.Expressions.Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default, params System.Linq.Expressions.Expression<Func<T, object>>[]? includesProperties)
+        public async Task<IReadOnlyList<Sushi>> ListAsync(Expression<Func<Sushi, bool>> filter, CancellationToken cancellationToken = default, params Expression<Func<Sushi, object>>[]? includesProperties)
         {
             var query = _entities.Where(filter);
             if (includesProperties != null)
@@ -59,9 +60,77 @@ namespace Lab5.Persistence.Repository
             return await query.ToListAsync(cancellationToken);
         }
 
-        public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
+        public async Task UpdateAsync(Sushi entity, CancellationToken cancellationToken = default)
         {
-            var old = await GetByIdAsync(entity.Id);
+            var old = await GetByIdAsync(entity.Id, cancellationToken);
+            _dbContext.Entry(old).CurrentValues.SetValues(entity);
+        }
+    }
+
+    internal class EfSetRepository : IRepository<Set>
+    {
+        private readonly DbContext _dbContext;
+        private readonly DbSet<Set> _entities;
+
+        public EfSetRepository(DbContext dbContext)
+        {
+            _dbContext = dbContext;
+            _entities = dbContext.Set<Set>();
+        }
+
+        public async Task AddAsync(Set entity, CancellationToken cancellationToken = default)
+        {
+            await _entities.AddAsync(entity, cancellationToken);
+        }
+
+        public void AddSushi(Set entity, Sushi sushi)
+        {
+            entity.Sushi.Add(sushi);
+            _entities.Update(entity);
+        }
+
+        public void DeleteAsync(Set entity, CancellationToken cancellationToken = default)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity), "Entity cannot be null");
+            }
+            _entities.Remove(entity);
+        }
+
+        public async Task<Set> FirstAsync(Expression<Func<Set, bool>> filter, CancellationToken cancellationToken = default)
+        {
+            return await _entities.FirstAsync(filter, cancellationToken);
+        }
+
+        public async Task<Set> GetByIdAsync(int id, CancellationToken cancellationToken = default, params Expression<Func<Set, object>>[]? includesProperties)
+        {
+            var query = _entities.AsQueryable();
+            if (includesProperties != null)
+            {
+                query = includesProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+            }
+            return await query.FirstAsync(e => e.Id == id, cancellationToken);
+        }
+
+        public async Task<IReadOnlyList<Set>> ListAllAsync(CancellationToken cancellationToken = default)
+        {
+            return await _entities.ToListAsync(cancellationToken);
+        }
+
+        public async Task<IReadOnlyList<Set>> ListAsync(Expression<Func<Set, bool>> filter, CancellationToken cancellationToken = default, params Expression<Func<Set, object>>[]? includesProperties)
+        {
+            var query = _entities.Where(filter);
+            if (includesProperties != null)
+            {
+                query = includesProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+            }
+            return await query.ToListAsync(cancellationToken);
+        }
+
+        public async Task UpdateAsync(Set entity, CancellationToken cancellationToken = default)
+        {
+            var old = await GetByIdAsync(entity.Id, cancellationToken);
             _dbContext.Entry(old).CurrentValues.SetValues(entity);
         }
     }
