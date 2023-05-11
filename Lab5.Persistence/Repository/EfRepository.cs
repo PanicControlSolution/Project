@@ -67,7 +67,7 @@ namespace Lab5.Persistence.Repository
         }
     }
 
-    internal class EfSetRepository : IRepository<Set>
+    public class EfSetRepository : IRepository<Set>
     {
         private readonly DbContext _dbContext;
         private readonly DbSet<Set> _entities;

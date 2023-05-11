@@ -1,6 +1,7 @@
 ﻿using Lab5.Application.Abstractions;
 using Lab5.Domain.Abstractions;
 using Lab5.Domain.Entities;
+using Lab5.Persistence.Repository;
 
 namespace Lab5.Application.Services
 {
@@ -16,11 +17,21 @@ namespace Lab5.Application.Services
         public Task AddAsync(Set item)
         {
             return _unitOfWork._setRepository.AddAsync(item);
+            _unitOfWork.SaveAllAsync();
+
+        }
+
+        public void AddSushi(Set set, Sushi item)
+        {
+            var repo = _unitOfWork._setRepository as EfSetRepository;
+            repo.AddSushi(set, item);
+            _unitOfWork.SaveAllAsync();
         }
 
         public void DeleteAsync(Set item)
         {
             _unitOfWork._setRepository.DeleteAsync(item);
+            _unitOfWork.SaveAllAsync();
         }
 
         public Task<IReadOnlyList<Set>> GetAllAsync()

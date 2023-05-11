@@ -12,6 +12,11 @@
             Sets = sets.ToList();
         }
 
+        public Sushi(string name, int count, string photo = "empty.png") : base(name, photo)
+        {
+            Count = count;
+        }
+
         public Sushi() : base() { }
     }
 }

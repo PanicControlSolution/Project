@@ -83,18 +83,7 @@ namespace Lab5.UI
             {
                 await unitOfWork._setRepository.AddAsync(set);
             }
-            try
-            {
-                await unitOfWork.SaveAllAsync();
-            }
-            catch (DbUpdateException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
+            await unitOfWork.SaveAllAsync();
             foreach (var set in sets)
             {
                 for (int j = 1; j < new Random().Next(4, 10); j++)
@@ -102,18 +91,7 @@ namespace Lab5.UI
                     await unitOfWork._sushiRepository.AddAsync(new Sushi($"Суши {j}", new Random().Next(4, 12), new List<Set> { set }));
                 }
             }
-            try
-            {
-                await unitOfWork.SaveAllAsync();
-            }
-            catch (DbUpdateException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
+            await unitOfWork.SaveAllAsync();
         }
 
         private static void SetupServices(IServiceCollection services)
@@ -124,15 +102,15 @@ namespace Lab5.UI
 
         private static void SetupViewModels(IServiceCollection services)
         {
-            services.AddTransient<SetViewModel>();
-            services.AddTransient<DetailsViewModel>();
+            services.AddSingleton<SetViewModel>();
+            services.AddSingleton<DetailsViewModel>();
         }
 
         private static void SetupViews(IServiceCollection services)
         {
-            services.AddTransient<Pages.Sets>();
-            services.AddTransient<Pages.Details>();
-            services.AddTransient<Pages.AddSushiPage>();
+            services.AddSingleton<Pages.Sets>();
+            services.AddSingleton<Pages.Details>();
+            services.AddSingleton<Pages.AddSushiPage>();
         }
     }
 }

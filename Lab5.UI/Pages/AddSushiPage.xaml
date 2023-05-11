@@ -29,7 +29,8 @@
                Grid.ColumnSpan="2"
                Grid.Column="0"></Label>
 
-        <StackLayout BindableLayout.ItemsSource="{Binding Sets}"
+        <StackLayout x:Name="Sets_"
+                     BindableLayout.ItemsSource="{Binding Sets}"
                      Orientation="Horizontal"
                      Grid.Row="1"
                      Grid.ColumnSpan="2"
@@ -38,19 +39,25 @@
                      HorizontalOptions="Center"
                      VerticalOptions="Center">
             <BindableLayout.ItemTemplate>
-                <DataTemplate x:DataType="entities:Set">
+                <DataTemplate x:DataType="entities:Set"
+                              x:Name="Set_">
                     <Grid RowDefinitions="*, *"
                           Margin="20, 5, 20, 5">
-                        <Label Grid.Row="0"
+                        <Label x:Name="SetName"
+                               Grid.Row="0"
                                Text="{Binding Name}"
                                FontSize="Small"
                                TextColor="#2B0B98"
                                VerticalOptions="Center"
                                HorizontalOptions="Center">
                         </Label>
-                        <CheckBox VerticalOptions="Start"
+                        <CheckBox x:DataType="entities:Set"
+                                  x:Name="{Binding Name}"
+                                  VerticalOptions="Start"                                  
                                   HorizontalOptions="Center"
-                                  Grid.Row="1" />
+                                  Grid.Row="1"
+                                  CheckedChanged="OnCheckBoxCheckedChanged">
+                        </CheckBox>
                     </Grid>
                 </DataTemplate>
             </BindableLayout.ItemTemplate>

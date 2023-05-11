@@ -12,14 +12,16 @@ namespace Lab5.Application.Services
         {
             _unitOfWork = unit;
         }
-        public Task AddAsync(Sushi item)
+        public async Task AddAsync(Sushi item)
         {
-            return _unitOfWork._sushiRepository.AddAsync(item);
+            await _unitOfWork._sushiRepository.AddAsync(item);
+            await _unitOfWork.SaveAllAsync();
         }
 
-        public void DeleteAsync(Sushi item)
+        public async void DeleteAsync(Sushi item)
         {
             _unitOfWork._sushiRepository.DeleteAsync(item);
+            await _unitOfWork.SaveAllAsync();
         }
 
         public Task<IReadOnlyList<Sushi>> GetAllAsync()

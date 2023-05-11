@@ -3,12 +3,13 @@ using CommunityToolkit.Mvvm.Input;
 using Lab5.Application.Abstractions;
 using Lab5.Domain.Entities;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Lab5.UI.ViewModels
 {
     public partial class SetViewModel : ObservableObject
     {
-        private readonly ISetService _setService;
+        public readonly ISetService _setService;
 
         public SetViewModel(ISetService setService)
         {
@@ -16,6 +17,9 @@ namespace Lab5.UI.ViewModels
         }
 
         public ObservableCollection<Set> Sets { get; set; } = new();
+
+        [ObservableProperty]
+        bool isChecked;
         public ObservableCollection<Sushi> Sushi { get; set; } = new();
 
         [ObservableProperty]
@@ -33,6 +37,7 @@ namespace Lab5.UI.ViewModels
         [RelayCommand]
         async void AddSushi() => await GoToAddSushi();
 
+
         public async Task GetSets()
         {
             var sets = await _setService.GetAllAsync();
@@ -48,6 +53,10 @@ namespace Lab5.UI.ViewModels
 
         public async Task GetSushi()
         {
+            if (SelectedSet == null)
+            {
+                return;
+            }
             var sushi = await _setService.GetAllBySetIdAsync(SelectedSet.Id);
             await MainThread.InvokeOnMainThreadAsync(() =>
             {
@@ -71,6 +80,10 @@ namespace Lab5.UI.ViewModels
 
         private async Task GoToAddSushi()
         {
+            _setService.GetAllAsync();
+            foreach(var set in Sets){
+                await _setService.GetAllBySetIdAsync(set.Id);
+            }
             await Shell.Current.GoToAsync($"AddSushiPage");
         }
     }
