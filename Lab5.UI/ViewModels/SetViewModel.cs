@@ -80,7 +80,7 @@ namespace Lab5.UI.ViewModels
 
         private async Task GoToAddSushi()
         {
-            _setService.GetAllAsync();
+            await _setService.GetAllAsync();
             foreach(var set in Sets){
                 await _setService.GetAllBySetIdAsync(set.Id);
             }

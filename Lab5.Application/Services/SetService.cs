@@ -14,11 +14,10 @@ namespace Lab5.Application.Services
             _unitOfWork = unit;
         }
 
-        public Task AddAsync(Set item)
+        public async Task AddAsync(Set item)
         {
-            return _unitOfWork._setRepository.AddAsync(item);
-            _unitOfWork.SaveAllAsync();
-
+            await _unitOfWork._setRepository.AddAsync(item);
+            await _unitOfWork.SaveAllAsync();
         }
 
         public void AddSushi(Set set, Sushi item)
