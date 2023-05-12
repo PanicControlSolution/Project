@@ -38,11 +38,15 @@
                      Margin="0, 10, 0, 10"
                      HorizontalOptions="Center"
                      VerticalOptions="Center">
+
             <BindableLayout.ItemTemplate>
+
                 <DataTemplate x:DataType="entities:Set"
                               x:Name="Set_">
+
                     <Grid RowDefinitions="*, *"
                           Margin="20, 5, 20, 5">
+
                         <Label x:Name="SetName"
                                Grid.Row="0"
                                Text="{Binding Name}"
@@ -51,16 +55,21 @@
                                VerticalOptions="Center"
                                HorizontalOptions="Center">
                         </Label>
+
                         <CheckBox x:DataType="entities:Set"
                                   x:Name="{Binding Name}"
-                                  VerticalOptions="Start"                                  
+                                  VerticalOptions="Start"
                                   HorizontalOptions="Center"
                                   Grid.Row="1"
                                   CheckedChanged="OnCheckBoxCheckedChanged">
                         </CheckBox>
+
                     </Grid>
+
                 </DataTemplate>
+
             </BindableLayout.ItemTemplate>
+
         </StackLayout>
 
         <Border Stroke="#C49B33"
@@ -72,6 +81,7 @@
                 VerticalOptions="Start"
                 HorizontalOptions="Start"
                 Padding="20,8">
+
             <Label Grid.Row="1"
                    Grid.Column="0"
                    Text=" Выберите фотографию:"
@@ -83,6 +93,7 @@
                    HorizontalOptions="Center"
                    TextColor="#C49B33">
             </Label>
+
         </Border>
 
         <Button Grid.Row="2"
@@ -106,6 +117,7 @@
                 VerticalOptions="Start"
                 HorizontalOptions="Start"
                 Padding="20,8">
+
             <Label Grid.Row="2"
                    Grid.Column="0"
                    Text=" Введите название новой сушины:"
@@ -117,6 +129,7 @@
                    BackgroundColor="Transparent"
                    TextColor="#C49B33">
             </Label>
+
         </Border>
 
         <Border Stroke="#C49B33"
@@ -128,6 +141,7 @@
                 VerticalOptions="Start"
                 HorizontalOptions="Start"
                 Padding="20,8">
+
             <Label Grid.Row="3"
                    Grid.Column="0"
                    Text=" Введите количество сушин:"
@@ -138,6 +152,7 @@
                    BackgroundColor="Transparent"
                    TextColor="#C49B33">
             </Label>
+
         </Border>
 
         <Entry x:Name="entry"
@@ -166,6 +181,7 @@
                 Margin="230, 10, 230, 10"
                 BackgroundColor="#2B0B98"
                 TextColor="#C49B33">
+
         </Button>
 
     </Grid>
