@@ -27,7 +27,7 @@
                VerticalOptions="Center"
                TextColor="#2B0B98"
                Grid.ColumnSpan="2"
-               Grid.Column="0"></Label>
+               Grid.Column="0" />
 
         <StackLayout x:Name="Sets_"
                      BindableLayout.ItemsSource="{Binding Sets}"
@@ -53,16 +53,14 @@
                                FontSize="Small"
                                TextColor="#2B0B98"
                                VerticalOptions="Center"
-                               HorizontalOptions="Center">
-                        </Label>
+                               HorizontalOptions="Center" />
 
                         <CheckBox x:DataType="entities:Set"
                                   x:Name="{Binding Name}"
                                   VerticalOptions="Start"
                                   HorizontalOptions="Center"
                                   Grid.Row="1"
-                                  CheckedChanged="OnCheckBoxCheckedChanged">
-                        </CheckBox>
+                                  CheckedChanged="OnCheckBoxCheckedChanged" />
 
                     </Grid>
 
@@ -91,8 +89,7 @@
                    BackgroundColor="Transparent"
                    VerticalOptions="Center"
                    HorizontalOptions="Center"
-                   TextColor="#C49B33">
-            </Label>
+                   TextColor="#C49B33" />
 
         </Border>
 
@@ -105,8 +102,7 @@
                 HorizontalOptions="FillAndExpand"
                 BackgroundColor="#2B0B98"
                 TextColor="#C49B33"
-                Margin="0, 0, 100,0">
-        </Button>
+                Margin="0, 0, 100,0" />
 
         <Border Stroke="#C49B33"
                 StrokeThickness="4"
@@ -127,8 +123,8 @@
                    VerticalOptions="Center"
                    HorizontalOptions="Center"
                    BackgroundColor="Transparent"
-                   TextColor="#C49B33">
-            </Label>
+                   TextColor="#C49B33" />
+
 
         </Border>
 
@@ -150,8 +146,8 @@
                    VerticalTextAlignment="Center"
                    VerticalOptions="Start"
                    BackgroundColor="Transparent"
-                   TextColor="#C49B33">
-            </Label>
+                   TextColor="#C49B33" />
+
 
         </Border>
 
@@ -162,7 +158,8 @@
                HorizontalOptions="FillAndExpand"
                VerticalTextAlignment="Center"
                VerticalOptions="Start"
-               Placeholder="Как зовут вашу сушину?" />
+               Placeholder="Как зовут вашу сушину?"
+               TextColor="Black" />
 
         <Entry x:Name="entry2"
                Grid.Row="4"
@@ -171,7 +168,8 @@
                VerticalOptions="Start"
                VerticalTextAlignment="Center"
                HorizontalOptions="FillAndExpand"
-               Placeholder="Чем больше, тем лучше?" />
+               Placeholder="Чем больше, тем лучше?"
+               TextColor="Black" />
 
         <Button Text="Добавить новую сушину в сет"
                 FontSize="Medium"
@@ -180,9 +178,7 @@
                 Grid.ColumnSpan="2"
                 Margin="230, 10, 230, 10"
                 BackgroundColor="#2B0B98"
-                TextColor="#C49B33">
-
-        </Button>
+                TextColor="#C49B33" />
 
     </Grid>
 
