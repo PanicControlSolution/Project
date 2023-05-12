@@ -4,12 +4,17 @@ namespace Lab5.UI.Pages;
 
 public partial class Details : ContentPage
 {
-    private DetailsViewModel _viewModel;
+    private SushiViewModel _viewModel;
 
-    public Details(DetailsViewModel detailsViewModel)
+    public Details(SushiViewModel detailsViewModel)
     {
         InitializeComponent();
         _viewModel = detailsViewModel;
         BindingContext = _viewModel;
+    }
+
+    private void RemoveSushi(object sender, EventArgs e)
+    {
+        (BindingContext as SushiViewModel).Delete();
     }
 }

@@ -1,15 +1,22 @@
-﻿using Lab5.Domain.Entities;
+﻿using Lab5.Application.Abstractions;
+using Lab5.Domain.Entities;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Lab5.UI.ViewModels
 {
-    public partial class DetailsViewModel : IQueryAttributable, INotifyPropertyChanged
+    public partial class SushiViewModel : IQueryAttributable, INotifyPropertyChanged
     {
+        private readonly ISushiService _sushiService;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         Sushi selectedObject;
+
+        public SushiViewModel(ISushiService service)
+        {
+            _sushiService = service;
+        }
 
         public Sushi SelectedObject
         {
@@ -28,5 +35,11 @@ namespace Lab5.UI.ViewModels
 
         public void OnPropertyChanged([CallerMemberName] string name = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+        public void Delete()
+        {
+            _sushiService.DeleteAsync(selectedObject);
+            Shell.Current.GoToAsync("..");
+        }
     }
 }

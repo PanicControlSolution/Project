@@ -103,7 +103,7 @@ namespace Lab5.UI
         private static void SetupViewModels(IServiceCollection services)
         {
             services.AddSingleton<SetViewModel>();
-            services.AddSingleton<DetailsViewModel>();
+            services.AddSingleton<SushiViewModel>();
         }
 
         private static void SetupViews(IServiceCollection services)

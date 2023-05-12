@@ -15,6 +15,9 @@
         <toolkit:EventToCommandBehavior EventName="Loaded"
                                         Command="{Binding UpdateGroupListCommand}" />
 
+        <toolkit:EventToCommandBehavior EventName="Appearing"
+                                        Command="{Binding UpdateMembersListCommand}" />
+
     </ContentPage.Behaviors>
 
     <ContentPage.Resources>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:Lab5.UI.ViewModels"
              x:Class="Lab5.UI.Pages.Details"
-             x:DataType="models:DetailsViewModel"
+             x:DataType="models:SushiViewModel"
              Title="Details"
              BackgroundColor="White">
 
@@ -15,7 +15,8 @@
                HeightRequest="200"
                BackgroundColor="LightCyan">
 
-            <Grid ColumnDefinitions="*, *, *">
+            <Grid ColumnDefinitions="*, *, *"
+                  RowDefinitions="*, *">
 
                 <Image Grid.Column="0"
                        HorizontalOptions="StartAndExpand"
@@ -36,6 +37,16 @@
                        TextColor="Black"
                        Text="{Binding SelectedObject.Count, Mode=TwoWay}"
                        FontSize="Medium" />
+
+                <Button Grid.Row="1"
+                        Grid.ColumnSpan="3"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Center"
+                        Margin="0, 0, 50, 0"
+                        TextColor="Black"
+                        Text="Удалить"
+                        Clicked="RemoveSushi"
+                        FontSize="Medium" />
 
             </Grid>
 
