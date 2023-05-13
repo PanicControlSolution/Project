@@ -76,7 +76,46 @@
 	<ItemGroup>
 	  <None Remove="appsettings.json" />
 	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\noimage.svg" />
+	  <None Remove="Resources\Images\set1.jpg" />
+	  <None Remove="Resources\Images\set10.jpg" />
+	  <None Remove="Resources\Images\set11.jpg" />
+	  <None Remove="Resources\Images\set12.jpg" />
+	  <None Remove="Resources\Images\set2.jpg" />
+	  <None Remove="Resources\Images\set3.jpg" />
+	  <None Remove="Resources\Images\set4.jpg" />
+	  <None Remove="Resources\Images\set5.jpg" />
+	  <None Remove="Resources\Images\set6.jpg" />
+	  <None Remove="Resources\Images\set7.jpg" />
+	  <None Remove="Resources\Images\set8.jpg" />
+	  <None Remove="Resources\Images\set9.jpg" />
 	  <None Remove="Resources\Images\sushi.png" />
+	  <None Remove="Resources\Images\sushi1.jpg" />
+	  <None Remove="Resources\Images\sushi10.jpg" />
+	  <None Remove="Resources\Images\sushi11.jpg" />
+	  <None Remove="Resources\Images\sushi12.jpg" />
+	  <None Remove="Resources\Images\sushi13.jpg" />
+	  <None Remove="Resources\Images\sushi14.jpg" />
+	  <None Remove="Resources\Images\sushi15.jpg" />
+	  <None Remove="Resources\Images\sushi16.jpg" />
+	  <None Remove="Resources\Images\sushi17.jpg" />
+	  <None Remove="Resources\Images\sushi18.jpg" />
+	  <None Remove="Resources\Images\sushi19.jpg" />
+	  <None Remove="Resources\Images\sushi2.jpg" />
+	  <None Remove="Resources\Images\sushi20.jpg" />
+	  <None Remove="Resources\Images\sushi21.jpg" />
+	  <None Remove="Resources\Images\sushi22.jpg" />
+	  <None Remove="Resources\Images\sushi23.jpg" />
+	  <None Remove="Resources\Images\sushi24.jpg" />
+	  <None Remove="Resources\Images\sushi25.jpg" />
+	  <None Remove="Resources\Images\sushi26.jpg" />
+	  <None Remove="Resources\Images\sushi3.jpg" />
+	  <None Remove="Resources\Images\sushi4.jpg" />
+	  <None Remove="Resources\Images\sushi5.jpg" />
+	  <None Remove="Resources\Images\sushi6.jpg" />
+	  <None Remove="Resources\Images\sushi7.jpg" />
+	  <None Remove="Resources\Images\sushi8.jpg" />
+	  <None Remove="Resources\Images\sushi9.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -28,20 +28,22 @@
 
     <Grid HorizontalOptions="Fill"
           VerticalOptions="Fill"
-          ColumnDefinitions="*, *">
+          ColumnDefinitions="*, *, *">
 
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="0.25*" />
+            <RowDefinition Height="0.5*" />
             <RowDefinition />
 
         </Grid.RowDefinitions>
 
         <Picker x:Name="SetPicker"
-                HorizontalOptions="Start"
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="Center"
                 Margin="100, 10, 100, 10"
                 Title="Выберите сет"
-                BackgroundColor="LightGray"
+                TitleColor="Black"
+                BackgroundColor="LightCyan"
                 TextColor="Black"
                 ItemsSource="{Binding Sets}"
                 ItemDisplayBinding="{Binding Name}"
@@ -59,22 +61,36 @@
 
         </Picker>
 
-        <Button Text="--Добавить новую сушину--"
+        <Image Grid.Row="0"
+               Grid.Column="1"
+               Margin="0,10,0,15"
+               
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+               Source="{Binding SelectedSet.Photo}">
+        </Image>
+
+        <Button Text="Добавить новую сушину"
+                VerticalOptions="Center"
                 FontSize="Medium"
-                BackgroundColor="LightGray"
+                BackgroundColor="LightCyan"
                 TextColor="Black"
                 Command="{Binding AddSushiCommand}"
                 Grid.Row="0"
-                Grid.Column="1"
-                Margin="100, 50, 100, 50" />
+                Margin="0, 30, 30, 30"
+                Grid.Column="2"
+                HorizontalOptions="End"
+                 />
 
         <CollectionView x:Name="SushiView"
                         ItemsSource="{Binding Sushi}"
                         HorizontalOptions="FillAndExpand"
                         Margin="100, 0, 100, 0"
                         BackgroundColor="White"
+                        ItemsUpdatingScrollMode= "KeepScrollOffset"
+                       
                         Grid.Row="1"
-                        Grid.ColumnSpan="2">
+                        Grid.ColumnSpan="3">
 
             <CollectionView.ItemTemplate>
 
@@ -82,7 +98,7 @@
                               x:DataType="entities:Sushi">
 
                     <Frame BackgroundColor="{Binding Count, Converter={StaticResource CountToColor}}"
-                           Margin="100, 5, 100, 5">
+                           Margin="30, 10, 30, 5">
 
                         <Frame.GestureRecognizers>
 
@@ -91,13 +107,16 @@
 
                         </Frame.GestureRecognizers>
 
-                        <Grid Padding="10"
-                              RowDefinitions="40, 20"
+                        <Grid Padding="0"
+                              RowDefinitions="100, 70"
+                              ColumnDefinitions="150, *"
                               HorizontalOptions="Fill">
 
                             <Label Grid.Row="0"
+                                   Grid.Column="0"
                                    Text="{Binding Name}"
                                    TextColor="Black"
+                                   Margin="0,15,0,0"
                                    FontSize="Medium"
                                    HorizontalOptions="Fill"
                                    VerticalOptions="Fill"
@@ -106,11 +125,21 @@
 
                             <Label x:Name="Count"
                                    Grid.Row="1"
+                                   Grid.Column="0"
                                    Text="{Binding Count, StringFormat='Количество: {0:D}'}"
                                    FontSize="Small"
                                    TextColor="Black">
 
                             </Label>
+
+                            <Image
+                                Source="{Binding Photo}"
+                                Grid.RowSpan ="2"
+                                Grid.Column="1"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="EndAndExpand">
+                                
+                            </Image>
 
                         </Grid>
 

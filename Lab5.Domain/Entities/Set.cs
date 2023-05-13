@@ -10,7 +10,7 @@ namespace Lab5.Domain.Entities
 
         public List<Sushi> Sushi { get; set; } = new();
 
-        public Set(double cost, string name, string? description, double weight, string photo = "empty.png") : base(name, photo)
+        public Set(double cost, string name, string? description, double weight, string photo = "noimage.svg") : base(name, photo)
         {
             Cost = cost;
             Description = description;
