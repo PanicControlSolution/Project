@@ -31,7 +31,6 @@ namespace Lab5.UI
 
 #if DEBUG
             builder.Logging.AddDebug();
-
 #endif      
             var a = Assembly.GetExecutingAssembly();
             using var stream = a.GetManifestResourceStream(settingsStream);
@@ -75,8 +74,8 @@ namespace Lab5.UI
             await unitOfWork.CreateDatabaseAsync();
             // Add sets
             IList<Set> sets = new List<Set>() {
-                new Set(129.99, "Сяке сет", "Без огурцов", 1200),
-                new Set(139.99, "Кунсей сет", "Много огурцов", 1400)
+                new Set(129.99, "Сяке сет", "Без огурцов", 1200, "set" + new Random().Next(1, 12) + ".jpg"),
+                new Set(139.99, "Кунсей сет", "Много огурцов", 1400, "set" + new Random().Next(1, 12) + ".jpg")
             };
 
             foreach (var set in sets)
@@ -86,9 +85,9 @@ namespace Lab5.UI
             await unitOfWork.SaveAllAsync();
             foreach (var set in sets)
             {
-                for (int j = 1; j < new Random().Next(4, 10); j++)
+                for (int j = 1; j < new Random().Next(5, 10); j++)
                 {
-                    await unitOfWork._sushiRepository.AddAsync(new Sushi($"Суши {j}", new Random().Next(4, 12), new List<Set> { set }));
+                    await unitOfWork._sushiRepository.AddAsync(new Sushi($"Суши {j}", new Random().Next(4, 10), new List<Set> { set }, "sushi" + new Random().Next(1, 24) + ".jpg"));
                 }
             }
             await unitOfWork.SaveAllAsync();
