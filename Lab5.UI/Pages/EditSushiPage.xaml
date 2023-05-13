@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Lab5.UI.Pages.AddSushiPage"
-             Title="AddSushiPage"
+             x:Class="Lab5.UI.Pages.EditSushiPage"
+             Title="EditSushiPage"
+             x:Name="Page"
+             xmlns:converters="clr-namespace:Lab5.UI.ValueConverters"
+             xmlns:pages="clr-namespace:Lab5.UI.Pages"
              xmlns:models="clr-namespace:Lab5.UI.ViewModels"
              xmlns:entities="clr-namespace:Lab5.Domain.Entities;assembly=Lab5.Domain"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:DataType="models:SetViewModel"
+             x:DataType="pages:EditSushiPage"
              BackgroundColor="White">
 
-    <ContentPage.Behaviors>
+    <ContentPage.Resources>
 
-        <toolkit:EventToCommandBehavior EventName="Loaded"
-                                        Command="{Binding UpdateGroupListCommand}" />
+        <converters:IsInGroupConverter x:Key="IsInGroup" />
 
-    </ContentPage.Behaviors>
+    </ContentPage.Resources>
 
     <Grid RowDefinitions="0.5*, *, *, *, *, 0.5*"
           ColumnDefinitions="2*, 3*"
@@ -29,8 +31,8 @@
                Grid.ColumnSpan="2"
                Grid.Column="0" />
 
-        <StackLayout x:Name="Sets_"
-                     BindableLayout.ItemsSource="{Binding Sets}"
+        <StackLayout x:Name="SetsList"
+                     BindableLayout.ItemsSource="{Binding Sets.Sets}"
                      Orientation="Horizontal"
                      Grid.Row="1"
                      Grid.ColumnSpan="2"
@@ -41,26 +43,39 @@
 
             <BindableLayout.ItemTemplate>
 
-                <DataTemplate x:DataType="entities:Set"
-                              x:Name="Set_">
+                <DataTemplate>
 
                     <Grid RowDefinitions="*, *"
-                          Margin="20, 5, 20, 5">
+                          Margin="20, 5, 20, 5"
+                          BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
+                          x:DataType="entities:Set">
 
-                        <Label x:Name="SetName"
-                               Grid.Row="0"
+                        <Label Grid.Row="0"
                                Text="{Binding Name}"
                                FontSize="Small"
                                TextColor="#2B0B98"
                                VerticalOptions="Center"
                                HorizontalOptions="Center" />
 
-                        <CheckBox x:DataType="entities:Set"
-                                  x:Name="{Binding Name}"
-                                  VerticalOptions="Start"
+                        <CheckBox BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
                                   HorizontalOptions="Center"
                                   Grid.Row="1"
-                                  CheckedChanged="OnCheckBoxCheckedChanged" />
+                                  CheckedChanged="OnCheckBoxCheckedChanged">
+                            <CheckBox.IsChecked>
+                                <Binding Path="Id">
+                                    <Binding.Converter>
+                                        <converters:IsInGroupConverter Id="{Binding Id}">
+
+                                        </converters:IsInGroupConverter>
+                                    </Binding.Converter>
+                                    <Binding.ConverterParameter>
+                                        <Binding Path="ViewModel"
+                                                 Source="{x:Reference Page}"></Binding>
+                                        <!--IsChecked="{Binding Id, Converter={StaticResource IsInGroup} , ConverterParameter={Binding ViewModel, Source={x:Reference Page}}}"-->
+                                    </Binding.ConverterParameter>
+                                </Binding>
+                            </CheckBox.IsChecked>
+                        </CheckBox>
 
                     </Grid>
 
@@ -116,7 +131,7 @@
 
             <Label Grid.Row="2"
                    Grid.Column="0"
-                   Text=" Введите название новой сушины:"
+                   Text="Введите название новой сушины:"
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"
                    FontSize="Medium"
@@ -151,17 +166,18 @@
 
         </Border>
 
-        <Entry x:Name="entry"
+        <Entry x:Name="name"
                Grid.Row="3"
                FontSize="Medium"
                Grid.Column="1"
                HorizontalOptions="FillAndExpand"
                VerticalTextAlignment="Center"
                VerticalOptions="Start"
+               Text="{Binding ViewModel.SelectedObject.Name, Mode=TwoWay}"
                Placeholder="Как зовут вашу сушину?"
                TextColor="Black" />
 
-        <Entry x:Name="entry2"
+        <Entry x:Name="count"
                Grid.Row="4"
                FontSize="Medium"
                Grid.Column="1"
@@ -169,7 +185,21 @@
                VerticalTextAlignment="Center"
                HorizontalOptions="FillAndExpand"
                Placeholder="Чем больше, тем лучше?"
-               TextColor="Black" />
+               Keyboard="Numeric"
+               TextColor="Black"
+               Text="{Binding ViewModel.SelectedObject.Count, Mode=TwoWay}">
+
+            <Entry.Behaviors>
+
+                <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                   ValidStyle="{StaticResource ValidEntryStyle}"
+                                                   Flags="ValidateOnValueChanged"
+                                                   MinimumValue="1.0"
+                                                   MaximumValue="100.0"
+                                                   MaximumDecimalPlaces="2" />
+            </Entry.Behaviors>
+
+        </Entry>
 
         <Button Text="Добавить новую сушину в сет"
                 FontSize="Medium"

@@ -109,8 +109,8 @@ namespace Lab5.UI
         private static void SetupViews(IServiceCollection services)
         {
             services.AddSingleton<Pages.Sets>();
-            services.AddSingleton<Pages.Details>();
-            services.AddSingleton<Pages.AddSushiPage>();
+            services.AddTransient<Pages.Details>();
+            services.AddTransient<Pages.EditSushiPage>();
         }
     }
 }

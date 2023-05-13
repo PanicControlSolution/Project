@@ -7,7 +7,7 @@ namespace Lab5.UI
         public AppShell()
         {
             Routing.RegisterRoute(nameof(Details), typeof(Details));
-            Routing.RegisterRoute(nameof(AddSushiPage), typeof(AddSushiPage));
+            Routing.RegisterRoute(nameof(EditSushiPage), typeof(EditSushiPage));
             InitializeComponent();
         }
     }

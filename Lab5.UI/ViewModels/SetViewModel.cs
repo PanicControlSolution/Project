@@ -84,7 +84,7 @@ namespace Lab5.UI.ViewModels
             foreach(var set in Sets){
                 await _setService.GetAllBySetIdAsync(set.Id);
             }
-            await Shell.Current.GoToAsync($"AddSushiPage");
+            await Shell.Current.GoToAsync($"EditSushiPage");
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace Lab5.Persistence.Repository
 {
-    internal class EfSushiRepository : IRepository<Sushi>
+    public class EfSushiRepository : IRepository<Sushi>
     {
         private readonly DbContext _dbContext;
         private readonly DbSet<Sushi> _entities;
@@ -19,6 +19,12 @@ namespace Lab5.Persistence.Repository
         public async Task AddAsync(Sushi entity, CancellationToken cancellationToken = default)
         {
             await _entities.AddAsync(entity, cancellationToken);
+        }
+
+        public void AddSet(Sushi sushi, Set set)
+        {
+            sushi.Sets.Add(set);
+            _entities.Update(sushi);
         }
 
         public void DeleteAsync(Sushi entity, CancellationToken cancellationToken = default)

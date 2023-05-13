@@ -100,7 +100,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\AddSushiPage.xaml">
+	  <Compile Update="Pages\EditSushiPage.xaml.cs">
+	    <DependentUpon>EditSushiPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\EditSushiPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Details.xaml">

@@ -4,7 +4,7 @@ namespace Lab5.UI.Pages;
 
 public partial class Details : ContentPage
 {
-    private SushiViewModel _viewModel;
+    private readonly SushiViewModel _viewModel;
 
     public Details(SushiViewModel detailsViewModel)
     {
@@ -16,5 +16,14 @@ public partial class Details : ContentPage
     private void RemoveSushi(object sender, EventArgs e)
     {
         (BindingContext as SushiViewModel).Delete();
+    }
+
+    private async void EditSushi(object sender, EventArgs e)
+    {
+        Dictionary<string, object> parameters = new() {
+            { "Sushi", _viewModel.SelectedObject }
+        };
+
+        await Shell.Current.GoToAsync($"EditSushiPage", parameters);
     }
 }

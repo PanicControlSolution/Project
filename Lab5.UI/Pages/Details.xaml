@@ -39,7 +39,19 @@
                        FontSize="Medium" />
 
                 <Button Grid.Row="1"
-                        Grid.ColumnSpan="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Center"
+                        Margin="0, 0, 50, 0"
+                        TextColor="Black"
+                        Text="Изменить"
+                        Clicked="EditSushi"
+                        FontSize="Medium" />
+                
+                <Button Grid.Row="1"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="1"
                         HorizontalOptions="Fill"
                         VerticalOptions="Center"
                         Margin="0, 0, 50, 0"

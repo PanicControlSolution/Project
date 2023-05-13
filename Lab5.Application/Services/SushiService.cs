@@ -1,6 +1,7 @@
 ﻿using Lab5.Application.Abstractions;
 using Lab5.Domain.Abstractions;
 using Lab5.Domain.Entities;
+using Lab5.Persistence.Repository;
 
 namespace Lab5.Application.Services
 {
@@ -15,6 +16,13 @@ namespace Lab5.Application.Services
         public async Task AddAsync(Sushi item)
         {
             await _unitOfWork._sushiRepository.AddAsync(item);
+            await _unitOfWork.SaveAllAsync();
+        }
+
+        public async Task AddSetAsync(Sushi sushi, Set set)
+        {
+            var rep = (_unitOfWork._sushiRepository as EfSushiRepository)!;
+            rep.AddSet(sushi, set);
             await _unitOfWork.SaveAllAsync();
         }
 
