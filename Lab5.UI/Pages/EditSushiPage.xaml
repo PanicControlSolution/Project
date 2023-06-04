@@ -4,7 +4,6 @@
              x:Class="Lab5.UI.Pages.EditSushiPage"
              Title="EditSushiPage"
              x:Name="Page"
-             xmlns:converters="clr-namespace:Lab5.UI.ValueConverters"
              xmlns:pages="clr-namespace:Lab5.UI.Pages"
              xmlns:models="clr-namespace:Lab5.UI.ViewModels"
              xmlns:entities="clr-namespace:Lab5.Domain.Entities;assembly=Lab5.Domain"
@@ -12,17 +11,11 @@
              x:DataType="pages:EditSushiPage"
              BackgroundColor="White">
 
-    <ContentPage.Resources>
-
-        <converters:IsInGroupConverter x:Key="IsInGroup" />
-
-    </ContentPage.Resources>
-
     <Grid RowDefinitions="0.5*, *, *, *, *, 0.5*"
           ColumnDefinitions="2*, 3*"
           Margin="100, 20, 100, 20">
 
-        <Label Text="Выберите сеты, в которые вы хотите включить новую сушину."
+        <Label Text="Выберите сеты, в которые вы хотите включить новые суши."
                FontSize="Subtitle"
                Grid.Row="0"
                HorizontalOptions="Center"
@@ -31,59 +24,31 @@
                Grid.ColumnSpan="2"
                Grid.Column="0" />
 
-        <StackLayout x:Name="SetsList"
-                     BindableLayout.ItemsSource="{Binding Sets.Sets}"
-                     Orientation="Horizontal"
-                     Grid.Row="1"
-                     Grid.ColumnSpan="2"
-                     Grid.Column="0"
-                     Margin="0, 10, 0, 10"
-                     HorizontalOptions="Center"
-                     VerticalOptions="Center">
+        <CollectionView ItemsSource="{Binding Selection, Mode=TwoWay}"
+                        Grid.Row="1"
+                        HorizontalOptions="Center">
 
-            <BindableLayout.ItemTemplate>
+            <CollectionView.ItemTemplate>
 
-                <DataTemplate>
+                <DataTemplate x:DataType="pages:SetSelection">
 
-                    <Grid RowDefinitions="*, *"
-                          Margin="20, 5, 20, 5"
-                          BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
-                          x:DataType="entities:Set">
+                    <HorizontalStackLayout>
 
-                        <Label Grid.Row="0"
-                               Text="{Binding Name}"
-                               FontSize="Small"
-                               TextColor="#2B0B98"
+                        <Label Text="{Binding CurrentSet.Name}"
+                               HorizontalOptions="Center"
                                VerticalOptions="Center"
-                               HorizontalOptions="Center" />
+                               TextColor="#2B0B98"
+                               FontSize="Subtitle" />
 
-                        <CheckBox BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
-                                  HorizontalOptions="Center"
-                                  Grid.Row="1"
-                                  CheckedChanged="OnCheckBoxCheckedChanged">
-                            <CheckBox.IsChecked>
-                                <Binding Path="Id">
-                                    <Binding.Converter>
-                                        <converters:IsInGroupConverter Id="{Binding Id}">
+                        <CheckBox IsChecked="{Binding Contains}" />
 
-                                        </converters:IsInGroupConverter>
-                                    </Binding.Converter>
-                                    <Binding.ConverterParameter>
-                                        <Binding Path="ViewModel"
-                                                 Source="{x:Reference Page}"></Binding>
-                                        <!--IsChecked="{Binding Id, Converter={StaticResource IsInGroup} , ConverterParameter={Binding ViewModel, Source={x:Reference Page}}}"-->
-                                    </Binding.ConverterParameter>
-                                </Binding>
-                            </CheckBox.IsChecked>
-                        </CheckBox>
-
-                    </Grid>
+                    </HorizontalStackLayout>
 
                 </DataTemplate>
 
-            </BindableLayout.ItemTemplate>
+            </CollectionView.ItemTemplate>
 
-        </StackLayout>
+        </CollectionView>
 
         <Border Stroke="#C49B33"
                 StrokeThickness="4"
@@ -97,7 +62,7 @@
 
             <Label Grid.Row="1"
                    Grid.Column="0"
-                   Text=" Выберите фотографию:"
+                   Text="Выберите фотографию:"
                    FontSize="Medium"
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"
@@ -131,7 +96,7 @@
 
             <Label Grid.Row="2"
                    Grid.Column="0"
-                   Text="Введите название новой сушины:"
+                   Text="Введите название новых суши:"
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"
                    FontSize="Medium"
@@ -139,7 +104,6 @@
                    HorizontalOptions="Center"
                    BackgroundColor="Transparent"
                    TextColor="#C49B33" />
-
 
         </Border>
 
@@ -155,14 +119,13 @@
 
             <Label Grid.Row="3"
                    Grid.Column="0"
-                   Text=" Введите количество сушин:"
+                   Text="Введите количество суши:"
                    FontSize="Medium"
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"
                    VerticalOptions="Start"
                    BackgroundColor="Transparent"
                    TextColor="#C49B33" />
-
 
         </Border>
 
@@ -174,7 +137,7 @@
                VerticalTextAlignment="Center"
                VerticalOptions="Start"
                Text="{Binding ViewModel.SelectedObject.Name, Mode=TwoWay}"
-               Placeholder="Как зовут вашу сушину?"
+               Placeholder="Как называется суши?"
                TextColor="Black" />
 
         <Entry x:Name="count"
@@ -201,14 +164,15 @@
 
         </Entry>
 
-        <Button Text="Добавить новую сушину в сет"
+        <Button Text="Добавить новые суши"
                 FontSize="Medium"
                 HorizontalOptions="FillAndExpand"
                 Grid.Row="5"
                 Grid.ColumnSpan="2"
                 Margin="230, 10, 230, 10"
                 BackgroundColor="#2B0B98"
-                TextColor="#C49B33" />
+                TextColor="#C49B33"
+                Clicked="EditSushiElement"/>
 
     </Grid>
 

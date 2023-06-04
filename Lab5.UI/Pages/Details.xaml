@@ -41,9 +41,8 @@
                        FontSize="Medium" />
 
                 <Button Grid.Row="1"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        HorizontalOptions="Fill"
+                        Grid.Column="2"
+                        HorizontalOptions="End"
                         VerticalOptions="Center"
                         Margin="0, 0, 50, 0"
                         TextColor="Black"
@@ -52,10 +51,7 @@
                         FontSize="Medium" />
                 
                 <Button Grid.Row="1"
-                        Grid.Column="2"
-                        Grid.ColumnSpan="1"
-                        HorizontalOptions="Fill"
-                        Grid.Column ="2"
+                        Grid.Column="1"
                         HorizontalOptions="End"
                         VerticalOptions="Center"
                         Margin="0, 0, 50, 0"

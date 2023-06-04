@@ -1,31 +1,43 @@
-using CommunityToolkit.Mvvm.Input;
+using Lab5.Domain.Entities;
 using Lab5.UI.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace Lab5.UI.Pages;
+
+public class SetSelection
+{
+    public Set CurrentSet { get; set; }
+    public bool Contains { get; set; }
+
+    public SetSelection(Set set, bool contains)
+    {
+        CurrentSet = set;
+        Contains = contains;
+    }
+}
 
 public partial class EditSushiPage : ContentPage
 {
     public SushiViewModel ViewModel { get; set; }
-    public SetViewModel Sets { get; set; }
 
-    public List<string> selectedSets = new();
+    public ObservableCollection<SetSelection> Selection { get; set; } = new();
 
-    [RelayCommand]
-    public async void AddSushiElement()
+    public async void EditSushiElement(object sender, EventArgs e)
     {
-
+        var sets = Selection.Where(x => x.Contains).Select(x => x.CurrentSet);
+        ViewModel.SelectedObject.Sets.Clear();
+        ViewModel.SelectedObject.Sets.AddRange(sets);
+        await ViewModel.Update();
     }
 
-    void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e)
-    {
-
-    }
-
-    public EditSushiPage(SushiViewModel sushiViewModel, IServiceProvider provider)
+    public EditSushiPage(SushiViewModel sushiViewModel, SetViewModel sets)
     {
         InitializeComponent();
         ViewModel = sushiViewModel;
-        Sets = provider.GetRequiredService<SetViewModel>();
+        foreach (var set in sets.Sets)
+        {
+            Selection.Add(new SetSelection(set, ViewModel.SelectedObject.Sets.Where(x => x.Id == set.Id).Count() == 1));
+        }
         BindingContext = this;
     }
 

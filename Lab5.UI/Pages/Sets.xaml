@@ -70,7 +70,7 @@
                Source="{Binding SelectedSet.Photo}">
         </Image>
 
-        <Button Text="Добавить новую сушину"
+        <Button Text="Добавить новые суши"
                 VerticalOptions="Center"
                 FontSize="Medium"
                 BackgroundColor="LightCyan"
@@ -83,7 +83,7 @@
                  />
 
         <CollectionView x:Name="SushiView"
-                        ItemsSource="{Binding Sushi}"
+                        ItemsSource="{Binding Sushi, Mode=OneWay}"
                         HorizontalOptions="FillAndExpand"
                         Margin="100, 0, 100, 0"
                         BackgroundColor="White"
@@ -97,7 +97,7 @@
                 <DataTemplate x:Name="SushiItem"
                               x:DataType="entities:Sushi">
 
-                    <Frame BackgroundColor="{Binding Count, Converter={StaticResource CountToColor}}"
+                    <Frame BackgroundColor="{Binding Count, Converter={StaticResource CountToColor}, Mode=OneWay}"
                            Margin="30, 10, 30, 5">
 
                         <Frame.GestureRecognizers>

@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using Lab5.Application.Abstractions;
 using Lab5.Domain.Entities;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 
 namespace Lab5.UI.ViewModels
 {

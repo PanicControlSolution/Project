@@ -41,5 +41,11 @@ namespace Lab5.UI.ViewModels
             _sushiService.DeleteAsync(selectedObject);
             Shell.Current.GoToAsync("..");
         }
+
+        public async Task Update()
+        {
+            await _sushiService.UpdateAsync(selectedObject);
+            await Shell.Current.GoToAsync("..");
+        }
     }
 }
